@@ -8,6 +8,11 @@ public class SceneView {
 
     }
 
+    public void Render()
+    {
+
+    }
+
     public void End_Scene()
     {
 

@@ -9,4 +9,8 @@ public class StaticVariables {
     public static int SCORE_SCENE_VIEW = 2;
     public static int SCENE_VIEW_END = 3;
 
+    public static int LEVEL_EASY = 1;
+    public static int LEVEL_NORMAL = 2;
+    public static int LEVEL_HARD = 3;
+
 }

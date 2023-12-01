@@ -35,6 +35,10 @@ public class PanelWithTextInput extends JPanel {
         }
 
         // 이미 꽉 차 있으면
+    }
 
+    public String Get_strTextField()
+    {
+        return textField.getText();
     }
 }

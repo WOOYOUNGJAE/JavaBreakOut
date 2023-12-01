@@ -28,9 +28,10 @@ public class ViewController {
         curSceneView.Init_Scene();
     }
 
-    public void Run()
-    {
 
+    public void Render()
+    {
+        curSceneView.Render();
     }
 
     public void Change_SceneView(int nextSceneView)
