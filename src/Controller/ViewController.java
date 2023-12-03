@@ -1,9 +1,15 @@
 package Controller;
 
+import Model.GameObject;
+import MyGUI.Frame.MainFrame;
 import View.GameSceneView;
-import View.SceneView;
+import View.SceneViewBase;
 import View.ScoreSceneView;
 import View.StartSceneView;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 import static Utils.StaticVariables.*;
 
@@ -11,18 +17,18 @@ public class ViewController {
 
     public ViewController()
     {
-        sceneViewArr = new SceneView[SCENE_VIEW_END];
-        sceneViewArr[START_SCENE_VIEW] = new StartSceneView();
-        sceneViewArr[GAME_SCENE_VIEW] = new GameSceneView();
-        sceneViewArr[SCORE_SCENE_VIEW] = new ScoreSceneView();
+        sceneViewArr = new SceneViewBase[SCENE_END];
+        sceneViewArr[START_SCENE] = new StartSceneView();
+        ArrayList<GameObject>[] objListArr = CoreController.Get_Instance().Get_ObjListArr();
+        sceneViewArr[GAME_SCENE] = new GameSceneView(objListArr);
+        sceneViewArr[SCORE_SCENE] = new ScoreSceneView();
 
-        curSceneView = sceneViewArr[START_SCENE_VIEW];
+        curSceneView = sceneViewArr[START_SCENE];
     }
-
-    private SceneView[] sceneViewArr;
-    private SceneView curSceneView = null; // 현재 컨트롤 중인 뷰
-    private SceneView prevSceneView = null; // 현재 컨트롤 중인 뷰
-
+    private SceneViewBase[] sceneViewArr;
+    private SceneViewBase curSceneView = null; // 현재 컨트롤 중인 뷰
+    private SceneViewBase prevSceneView = null; // 현재 컨트롤 중인 뷰
+    private Graphics g = null;// MainFrame.Get_Instance().Get_Graphics();
     void Initialize()
     {
         curSceneView.Init_Scene();
@@ -31,7 +37,7 @@ public class ViewController {
 
     public void Render()
     {
-        curSceneView.Render();
+        curSceneView.Render(g);
     }
 
     public void Change_SceneView(int nextSceneView)

@@ -3,9 +3,7 @@ package View;
 import Controller.CoreController;
 import Model.StartChecker;
 import Model.UserManager;
-import MyGUI.Button.ButtonWithActionListner;
 import MyGUI.Frame.MainFrame;
-import MyGUI.Frame.SimpleModal;
 import MyGUI.Panel.PanelWithTextInput;
 
 import javax.swing.*;
@@ -14,12 +12,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static Utils.StaticVariables.*;
 
-public class StartSceneView extends SceneView{
+public class StartSceneView extends SceneViewBase {
     public StartSceneView()
     {
-        startChecker = new StartChecker();
         frame = MainFrame.Get_Instance();
         container = frame.getContentPane();
+        startChecker = new StartChecker();
+        CoreController.Get_Instance().Apply_StartChecker(startChecker);
         topPanel = new JPanel();
         middlePanel = new JPanel();
         bottomPanel = new PanelWithTextInput(
@@ -36,7 +35,7 @@ public class StartSceneView extends SceneView{
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CoreController.Get_Instance().Change_NextScene(GAME_SCENE_VIEW); // 게임 씬으로 전환
+                CoreController.Get_Instance().Change_NextScene(GAME_SCENE); // 게임 씬으로 전환
             }
         });
         topPanel.add(label);
@@ -117,8 +116,7 @@ public class StartSceneView extends SceneView{
         bottomPanel.Add_Button(jButton);
         container.add(bottomPanel, BorderLayout.SOUTH);
     }
-    private JFrame frame = null;
-    private Container container = null;
+
     private JPanel topPanel = null;
     private JPanel middlePanel = null;
     private PanelWithTextInput bottomPanel = null;
@@ -132,14 +130,17 @@ public class StartSceneView extends SceneView{
 
     @Override
     public void End_Scene() {
-//        container.removeAll();
-        container = null;
-        frame = null;
-        topPanel = null;
-        middlePanel = null;
-        bottomPanel = null;
-        label = null;
-        startButton = null;
-        startChecker = null;
+        container.removeAll();
+        frame.revalidate();
+        frame.repaint();
+        //frame.setVisible(false);
+//        container = null;
+//        frame = null;
+//        topPanel = null;
+//        middlePanel = null;
+//        bottomPanel = null;
+//        label = null;
+//        startButton = null;
+//        startChecker = null;
     }
 }

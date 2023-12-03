@@ -1,14 +1,21 @@
 package Controller;
 
+import Model.GameObject;
+import Model.StartChecker;
 import MyGUI.Frame.MainFrame;
-import Utils.StaticVariables;
 
-import javax.swing.*;
+import java.util.ArrayList;
+
+import static Utils.StaticVariables.OBJ_ENUM_END;
+import static Utils.StaticVariables.START_SCENE;
 
 // 가장 상위 컨트롤러(매니저), 하위 클래스에서 손쉽게 접근할 수 있도록 싱글톤으로
 public class CoreController {
+    public CoreController()
+    {
 
-    public static CoreController Instance = null;
+    }
+    private static CoreController Instance = new CoreController();
     public static CoreController Get_Instance()
     {
         if (Instance == null)
@@ -17,12 +24,26 @@ public class CoreController {
         }
         return Instance;
     }
-
-    MainFrame mainFrame = MainFrame.Get_Instance();
-    ModelController modelController = new ModelController();
-    ViewController viewController = new ViewController();
+    private ArrayList<GameObject>[] objListArr = new ArrayList[OBJ_ENUM_END];;
+    private int curScene = START_SCENE;
+    private StartChecker startChecker = null;
+    public void Apply_StartChecker(StartChecker instance) {startChecker = instance;}
+    public StartChecker Get_StartChecker() {return startChecker;}
+    MainFrame mainFrame = null;
+    ModelController modelController = null;
+    ViewController viewController = null;
+    public ArrayList<GameObject>[] Get_ObjListArr() {return objListArr; }
     public void Initialize()
     {
+        for (int i = 0; i < objListArr.length; ++i)
+        {
+            objListArr[i] = new ArrayList<>();
+        }
+        mainFrame = MainFrame.Get_Instance();
+        modelController = new ModelController();
+        modelController.Initialize();
+        viewController = new ViewController();
+        viewController.Initialize();
         mainFrame.Initialize();
         viewController.Initialize();
     }
@@ -33,13 +54,16 @@ public class CoreController {
         while (true)
         {
             int a = 1;
+            modelController.Update(0.02f);
             viewController.Render();
         }
     }
 
     public void Change_NextScene(int nextScene)
     {
-        // TODO : modelController.Change_SceneView(nextScene);
+        curScene = nextScene;
+        modelController.Change_SceneView(nextScene);
         viewController.Change_SceneView(nextScene);
     }
+
 }

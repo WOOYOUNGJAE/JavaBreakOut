@@ -10,6 +10,7 @@ public class StartChecker {
     // getter
     public boolean Is_ReadyToStart() {return userSelected && Is_LevelSelected();}
     public boolean Is_LevelSelected() {return (LEVEL_EASY <= level) && (level <= LEVEL_HARD);}
+    public int Get_Level() {return level;}
     // setter
     public void Set_UserSelected(boolean b) {userSelected = b;}
     public void Set_Level(int i) {level = i;}
