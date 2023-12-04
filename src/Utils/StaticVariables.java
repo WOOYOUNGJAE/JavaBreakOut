@@ -30,4 +30,6 @@ public class StaticVariables {
     public static final int DIR_WEST = 3;
     public static final int DIR_END = -1;
 
+    public static final float EPSILON = 1e-6f;
+
 }

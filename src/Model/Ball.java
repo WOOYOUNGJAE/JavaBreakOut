@@ -34,7 +34,7 @@ public class Ball extends GameObject {
     public void OnCollision(int collidedDir, float collidedLength, GameObject collidedObject) {
         if (collidedObject.Get_ObjEnum() == OBJ_ENUM_PLAYER) // 부딪힌게 플레이어라면
         {
-            collidedLength += 0.01f;
+            collidedLength += EPSILON;
             switch (collidedDir)
             {
                 case DIR_NORTH:

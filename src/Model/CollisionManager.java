@@ -44,7 +44,6 @@ public class CollisionManager
                             break;
                     }
                     ballObject.OnCollision(collidedDir_ball, tempCollidedLength , brickObject);
-                    continue;
                 }
             }
             tempCollidedLength = 0.f;
@@ -69,7 +68,6 @@ public class CollisionManager
                         break;
                 }
                 ballObject.OnCollision(collidedDir_ball,tempCollidedLength , ObjListArr[OBJ_ENUM_PLAYER].get(0));
-                continue;
             }
         }
         // 블럭, 볼
@@ -92,10 +90,10 @@ public class CollisionManager
         float collidedWidth = Math.abs(boxPosX - circlePosX);
         float collidedHeight = Math.abs(boxPosY - circlePosY);
         // 가로 충돌 조건
-        if (collidedWidth <= boxWidth + radius)
+        if (collidedWidth <= (boxWidth + radius) * 0.5f)
         {
             // 세로 충돌 조건
-            if (collidedHeight <= boxHeight + radius)
+            if (collidedHeight <= (boxHeight + radius) * 0.5f)
             {
                 // 충돌 확정                
                 if (boxPosY < circlePosY) // 박스가 더 위
