@@ -4,6 +4,9 @@ public class StaticVariables {
     public static final int ScreenWidth = 512;
     public static final int ScreenHeight = 512;
     public static final int BrickWidth = ScreenWidth >> 4;
+    public static final int PlayerWidth = ScreenWidth >> 3;
+    public static final int PlayerHeight = PlayerWidth >> 1;
+
     public static final int START_SCENE = 0;
     public static final int GAME_SCENE = 1;
     public static final int SCORE_SCENE = 2;

@@ -1,4 +1,6 @@
 package MyGUI.Frame;
+import Controller.KeyboardController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -38,6 +40,7 @@ public class MainFrame extends JFrame implements ActionListener {
     {
         setSize(ScreenWidth, ScreenHeight);
         Set_Active(true);
+        addKeyListener(KeyboardController.Get_Instance());
     }
 
     public void Set_Active(boolean b)

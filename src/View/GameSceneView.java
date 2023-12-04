@@ -1,6 +1,7 @@
 package View;
 
 import Model.GameObject;
+import Model.GameObject.*;
 import MyGUI.Frame.MainFrame;
 import MyGUI.Panel.GamePanel;
 
@@ -39,9 +40,12 @@ public class GameSceneView extends SceneViewBase {
         {
             switch (i)
             {
-//                case OBJ_ENUM_PLAYER:
-//                    objWriterArr[i] = new
-                case OBJ_ENUM_BALL -> objWriterArr[i] = new BallWriter();
+                case OBJ_ENUM_PLAYER:
+                    objWriterArr[i] = new PlayerWriter();
+                    break;
+                case OBJ_ENUM_BALL :
+                    objWriterArr[i] = new BallWriter();
+                    break;
             }
         }
         middlePanel = new JPanel()

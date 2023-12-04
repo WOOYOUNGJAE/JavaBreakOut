@@ -1,7 +1,9 @@
 package Controller;
 
+import Model.Ball;
 import Model.Box;
 import Model.GameObject;
+import Model.Player;
 
 import java.util.ArrayList;
 
@@ -52,12 +54,12 @@ public class ModelController {
         // TODO
         if (nextScene == GAME_SCENE)
         {
+            ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1, ScreenHeight >> 1, PlayerWidth, PlayerHeight, box));
             int nextLevel = CoreController.Get_Instance().Get_StartChecker().Get_Level();
             switch (nextLevel)
             {
                 case LEVEL_EASY:
                 {
-//                    ObjListArr[OBJ_ENUM_PLAYER].add(new Player())
                     for (int i = 0; i < 1; ++i)
                     {
                         ObjListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, ScreenHeight >> 1, BrickWidth >> 1, box));
