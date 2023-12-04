@@ -43,6 +43,9 @@ public class GameSceneView extends SceneViewBase {
                 case OBJ_ENUM_BALL :
                     objWriterArr[i] = new BallWriter();
                     break;
+                case OBJ_ENUM_BOX:
+                    objWriterArr[i] = new BoxWriter();
+                    break;
             }
         }
         middlePanel = new JPanel()

@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.Ball;
-import Model.Box;
-import Model.GameObject;
-import Model.Player;
+import Model.*;
 
 import java.util.ArrayList;
 
@@ -12,12 +9,14 @@ import static Utils.StaticVariables.*;
 public class ModelController {
 
     private ArrayList<GameObject>[] ObjListArr;
+    private CollisionManager collisionManager = null;
     private int curScene = START_SCENE;
     private int prevScene = START_SCENE;
-//    private Box box = new Box(); // TODO
+    private Box box = new Box(ScreenWidth>>1, ScreenHeight>>1, ScreenWidth, ScreenHeight );
     public void Initialize()
     {
         ObjListArr = CoreController.Get_Instance().Get_ObjListArr();
+        collisionManager = new CollisionManager(ObjListArr);
     }
     public void Update(float deltaTime)
     {
@@ -40,6 +39,8 @@ public class ModelController {
                     }
                 }
             }
+            // Late Update
+            collisionManager.Update(deltaTime);
         }
 
     }
@@ -55,6 +56,7 @@ public class ModelController {
         if (nextScene == GAME_SCENE)
         {
             ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight >> 1, PlayerWidth, PlayerHeight, box));
+            ObjListArr[OBJ_ENUM_BOX].add(box);
             int nextLevel = CoreController.Get_Instance().Get_StartChecker().Get_Level();
             switch (nextLevel)
             {

@@ -29,3 +29,9 @@ class PlayerWriter extends GameObjectWriter
         g.fillRect((int)player.Get_Pos().x - (width / 2), (int)player.Get_Pos().y - (height/2 ), width, height);
     }
 }
+class BoxWriter extends GameObjectWriter
+{
+    @Override
+    public void Draw(GameObject player, Graphics g) {
+    }
+}

@@ -9,10 +9,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static Utils.StaticVariables.OBJ_ENUM_PLAYER;
+
 public class Player extends GameObject
 {
     public Player(int x, int y, int cx, int cy, Box box)
     {
+        objectEnum = OBJ_ENUM_PLAYER;
         color = Color.GRAY;
         keyController = KeyboardController.Get_Instance();
         vPos = new Vector2(x, y);

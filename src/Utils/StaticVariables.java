@@ -19,7 +19,8 @@ public class StaticVariables {
     public static final int OBJ_ENUM_PLAYER = 0;
     public static final int OBJ_ENUM_BALL = 1;
     public static final int OBJ_ENUM_BRICK = 2;
-    public static final int OBJ_ENUM_END = 3;
+    public static final int OBJ_ENUM_BOX = 3;
+    public static final int OBJ_ENUM_END = 4;
 
 
     // Dir
@@ -27,6 +28,6 @@ public class StaticVariables {
     public static final int DIR_SOUTH = 1;
     public static final int DIR_EAST = 2;
     public static final int DIR_WEST = 3;
-    public static final int DIR_END = 4;
+    public static final int DIR_END = -1;
 
 }

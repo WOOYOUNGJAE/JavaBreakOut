@@ -17,14 +17,57 @@ public class CollisionManager
 
     public void Update(float deltaTime)
     {
+        // 충돌 방향 : 박스 기준
         for (var brickObject : ObjListArr[OBJ_ENUM_BRICK])
         {
             for (var ballObject : ObjListArr[OBJ_ENUM_BALL])
             {
                 int collidedDir = -1;
+                // 벽돌과 공 판단
                 if (Box_Circle_CollisionCheck(brickObject, ballObject, collidedDir))
                 {
-
+                    brickObject.OnCollision(collidedDir, ballObject);
+                    int collidedDir_ball = -1;
+                    switch (collidedDir)
+                    {
+                        case DIR_NORTH:
+                            collidedDir_ball = DIR_SOUTH;
+                            break;
+                        case DIR_SOUTH:
+                            collidedDir_ball = DIR_NORTH;
+                            break;
+                        case DIR_EAST:
+                            collidedDir_ball = DIR_WEST;
+                            break;
+                        case DIR_WEST:
+                            collidedDir_ball = DIR_EAST;
+                            break;
+                    }
+                    ballObject.OnCollision(collidedDir_ball, brickObject);
+                    continue;
+                }
+                // 플레이어와 공 판단, 충돌 방향 플레이어 기준
+                else if (Box_Circle_CollisionCheck(ObjListArr[OBJ_ENUM_PLAYER].get(0), ballObject, collidedDir))
+                {
+                    ObjListArr[OBJ_ENUM_PLAYER].get(0).OnCollision(collidedDir, ballObject);
+                    int collidedDir_ball = -1;
+                    switch (collidedDir)
+                    {
+                        case DIR_NORTH:
+                            collidedDir_ball = DIR_SOUTH;
+                            break;
+                        case DIR_SOUTH:
+                            collidedDir_ball = DIR_NORTH;
+                            break;
+                        case DIR_EAST:
+                            collidedDir_ball = DIR_WEST;
+                            break;
+                        case DIR_WEST:
+                            collidedDir_ball = DIR_EAST;
+                            break;
+                    }
+                    ballObject.OnCollision(collidedDir_ball, ObjListArr[OBJ_ENUM_PLAYER].get(0));
+                    continue;
                 }
             }
         }
@@ -82,12 +125,5 @@ public class CollisionManager
         }
 
         return false;
-    }
-
-    private int CollidedDir()
-    {
-
-        
-        return DIR_END; // 에러
     }
 }
