@@ -24,11 +24,6 @@ public class Box extends GameObject
         frame.setFocusable(true);
         frame.setFocusTraversalKeysEnabled(false);
     }
-    private int width;
-    private int height;
-    // getter
-    public int Get_Width() {return width;}
-    public int Get_Height() {return height;}
 
     @Override
     public void Update(float deltaTime) {

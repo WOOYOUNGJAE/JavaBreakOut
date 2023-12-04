@@ -30,13 +30,9 @@ public class Player extends GameObject
     }
 
     KeyboardController keyController = null;
-    private int width;
-    private int height;
+
     private Box container = null;
 
-    // getter
-    public int Get_Width() {return width;}
-    public int Get_Height() {return height;}
 
     @Override
     public void Update(float deltaTime) {

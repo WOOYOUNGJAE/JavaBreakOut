@@ -52,7 +52,6 @@ public class ModelController {
             return;
         }
         curScene = nextScene;
-        // TODO
         if (nextScene == GAME_SCENE)
         {
             ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight >> 1, PlayerWidth, PlayerHeight, box));
@@ -64,7 +63,7 @@ public class ModelController {
                 {
                     for (int i = 0; i < 1; ++i)
                     {
-                        ObjListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, ScreenHeight >> 1, BrickWidth >> 1, box));
+                        ObjListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, 0 * ScreenHeight >> 1, BrickWidth >> 1, box));
                     }
                     break;
                 }

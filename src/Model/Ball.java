@@ -31,17 +31,30 @@ public class Ball extends GameObject {
     }
 
     @Override
-    public void OnCollision(int collidedDir, GameObject collidedObject) {
+    public void OnCollision(int collidedDir, float collidedLength, GameObject collidedObject) {
         if (collidedObject.Get_ObjEnum() == OBJ_ENUM_PLAYER) // 부딪힌게 플레이어라면
         {
-            if (collidedDir == DIR_NORTH || collidedDir == DIR_SOUTH)
+            collidedLength += 0.01f;
+            switch (collidedDir)
             {
-                vVelocity.y *= -1;
+                case DIR_NORTH:
+                    vVelocity.y *= -1;
+                    vPos.y += collidedLength;
+                    break;
+                case DIR_SOUTH:
+                    vVelocity.y *= -1;
+                    vPos.y -= collidedLength;
+                    break;
+                case DIR_EAST:
+                    vVelocity.x *= -1;
+                    vPos.x -= collidedLength;
+                    break;
+                case DIR_WEST:
+                    vVelocity.x *= -1;
+                    vPos.x += collidedLength;
+                    break;
             }
-            else if (collidedDir == DIR_EAST || collidedDir == DIR_WEST)
-            {
-                vVelocity.x *= -1;
-            }
+
         }
     }
 }
