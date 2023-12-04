@@ -3,7 +3,10 @@ package Controller;
 import Model.GameObject;
 import Model.StartChecker;
 import MyGUI.Frame.MainFrame;
+import MyGUI.Panel.GamePanel;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 import static Utils.StaticVariables.OBJ_ENUM_END;
@@ -47,13 +50,19 @@ public class CoreController {
         mainFrame.Initialize();
         viewController.Initialize();
     }
-
+    JFrame my_frame;// = new JFrame();
+    GamePanel tempanel;// = new GamePanel();
     // Main에서 호출
     public void Run()
     {
         while (true)
         {
-            int a = 1;
+            try
+            {
+                Thread.sleep(20);
+            }
+            catch (InterruptedException e){}
+
             modelController.Update(0.02f);
             viewController.Render();
         }

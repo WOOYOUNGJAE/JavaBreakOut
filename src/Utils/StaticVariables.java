@@ -1,8 +1,8 @@
 package Utils;
 
 public class StaticVariables {
-    public static final int ScreenWidth = 1280;
-    public static final int ScreenHeight = 720;
+    public static final int ScreenWidth = 512;
+    public static final int ScreenHeight = 512;
     public static final int BrickWidth = ScreenWidth >> 4;
     public static final int START_SCENE = 0;
     public static final int GAME_SCENE = 1;

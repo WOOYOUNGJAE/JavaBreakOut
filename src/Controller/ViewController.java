@@ -24,11 +24,11 @@ public class ViewController {
         sceneViewArr[SCORE_SCENE] = new ScoreSceneView();
 
         curSceneView = sceneViewArr[START_SCENE];
+
     }
     private SceneViewBase[] sceneViewArr;
     private SceneViewBase curSceneView = null; // 현재 컨트롤 중인 뷰
     private SceneViewBase prevSceneView = null; // 현재 컨트롤 중인 뷰
-    private Graphics g = null;// MainFrame.Get_Instance().Get_Graphics();
     void Initialize()
     {
         curSceneView.Init_Scene();
@@ -37,7 +37,7 @@ public class ViewController {
 
     public void Render()
     {
-        curSceneView.Render(g);
+        curSceneView.Render();
     }
 
     public void Change_SceneView(int nextSceneView)

@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.Ball;
 import Model.Box;
 import Model.GameObject;
 
@@ -49,7 +48,7 @@ public class ModelController {
         {
             return;
         }
-
+        curScene = nextScene;
         // TODO
         if (nextScene == GAME_SCENE)
         {

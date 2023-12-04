@@ -17,7 +17,7 @@ public abstract class SceneViewBase {
 
     }
 
-    public void Render(Graphics g)
+    public void Render()
     {
 
     }

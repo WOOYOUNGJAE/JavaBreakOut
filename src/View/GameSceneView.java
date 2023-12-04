@@ -2,6 +2,7 @@ package View;
 
 import Model.GameObject;
 import MyGUI.Frame.MainFrame;
+import MyGUI.Panel.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +12,8 @@ import static Utils.StaticVariables.*;
 
 public class GameSceneView extends SceneViewBase {
     public GameSceneView(ArrayList<GameObject>[] objListArr) {
-        frame = MainFrame.Get_Instance();
-        container = frame.getContentPane();
         this.objListArr = objListArr;
+//        frame = MainFrame.Get_Instance();
 
 
     }
@@ -21,21 +21,53 @@ public class GameSceneView extends SceneViewBase {
     private JPanel topPanel = null; // username,Time,
     private JPanel middlePanel = null; // InGame
     private ArrayList<GameObject>[] objListArr = null;
-    private GameObjectWriter objWriter = new GameObjectWriter();
+    private GameObjectWriter[] objWriterArr = new GameObjectWriter[OBJ_ENUM_END];
+    private GamePanel gamePanel = new GamePanel();
 
     @Override
-    public void Init_Scene() {
+    public void Init_Scene()
+    {
         super.Init_Scene();
+        frame = MainFrame.Get_Instance();
+//        frame = new JFrame();
+//        frame.setSize(ScreenWidth, ScreenHeight);
+//        frame.setVisible(true);
+
+        container = frame.getContentPane();
+
+        for (int i = 0; i < OBJ_ENUM_END; ++i)
+        {
+            switch (i)
+            {
+//                case OBJ_ENUM_PLAYER:
+//                    objWriterArr[i] = new
+                case OBJ_ENUM_BALL -> objWriterArr[i] = new BallWriter();
+            }
+        }
+        middlePanel = new JPanel()
+        {
+            @Override
+            public void paintComponent(Graphics g)
+            {
+                for (int i = OBJ_ENUM_PLAYER; i < OBJ_ENUM_END; ++i)
+                {
+                    for (var iter : objListArr[i])
+                    {
+                        if (iter != null)
+                        {
+                            objWriterArr[i].Draw(iter, g);
+                        }
+                    }
+                }
+            }
+        };
+        frame.getContentPane().add(middlePanel);
+        frame.revalidate();
+        frame.repaint();
     }
 
     @Override
-    public void Render(Graphics g) {
-        for (var iter : objListArr) {
-            for (var innerIter : iter) {
-                if (innerIter != null) {
-                    objWriter.Paint(innerIter, g);
-                }
-            }
-        }
+    public void Render() {
+        frame.repaint();
     }
 }
