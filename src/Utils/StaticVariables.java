@@ -22,4 +22,11 @@ public class StaticVariables {
     public static final int OBJ_ENUM_END = 3;
 
 
+    // Dir
+    public static final int DIR_NORTH = 0;
+    public static final int DIR_SOUTH = 1;
+    public static final int DIR_EAST = 2;
+    public static final int DIR_WEST = 3;
+    public static final int DIR_END = 4;
+
 }

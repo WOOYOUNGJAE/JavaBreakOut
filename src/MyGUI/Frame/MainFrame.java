@@ -12,16 +12,10 @@ import static Utils.StaticVariables.*;
 public class MainFrame extends JFrame implements ActionListener {
 
     static private MainFrame Instance = new MainFrame();
-    private JPanel panel;
-    private Graphics graphics_Instance;// = new JPanel().getGraphics();
     public MainFrame()
     {
         super();
-        panel = new JPanel();
-        graphics_Instance = panel.getGraphics();
     }
-
-    public Graphics Get_Graphics() {return graphics_Instance;}
     static public MainFrame Get_Instance()
     {
         if (Instance == null)
@@ -40,7 +34,6 @@ public class MainFrame extends JFrame implements ActionListener {
     {
         setSize(ScreenWidth, ScreenHeight);
         Set_Active(true);
-        addKeyListener(KeyboardController.Get_Instance());
     }
 
     public void Set_Active(boolean b)

@@ -14,7 +14,7 @@ public class ModelController {
     private ArrayList<GameObject>[] ObjListArr;
     private int curScene = START_SCENE;
     private int prevScene = START_SCENE;
-    private Box box = new Box();
+//    private Box box = new Box(); // TODO
     public void Initialize()
     {
         ObjListArr = CoreController.Get_Instance().Get_ObjListArr();
@@ -54,7 +54,7 @@ public class ModelController {
         // TODO
         if (nextScene == GAME_SCENE)
         {
-            ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1, ScreenHeight >> 1, PlayerWidth, PlayerHeight, box));
+            ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight >> 1, PlayerWidth, PlayerHeight, box));
             int nextLevel = CoreController.Get_Instance().Get_StartChecker().Get_Level();
             switch (nextLevel)
             {

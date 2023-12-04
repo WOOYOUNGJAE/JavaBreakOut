@@ -26,6 +26,6 @@ class PlayerWriter extends GameObjectWriter
         g.setColor(player.Get_Color());
         int width = ((Player)player).Get_Width();
         int height = ((Player)player).Get_Height();
-        g.fillRect((int)player.Get_Pos().x - width>>1, (int)player.Get_Pos().y - height>>1, width, height);
+        g.fillRect((int)player.Get_Pos().x - (width / 2), (int)player.Get_Pos().y - (height/2 ), width, height);
     }
 }

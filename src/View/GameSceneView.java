@@ -1,5 +1,6 @@
 package View;
 
+import Controller.KeyboardController;
 import Model.GameObject;
 import Model.GameObject.*;
 import MyGUI.Frame.MainFrame;
@@ -7,6 +8,8 @@ import MyGUI.Panel.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import static Utils.StaticVariables.*;
@@ -15,8 +18,6 @@ public class GameSceneView extends SceneViewBase {
     public GameSceneView(ArrayList<GameObject>[] objListArr) {
         this.objListArr = objListArr;
 //        frame = MainFrame.Get_Instance();
-
-
     }
 
     private JPanel topPanel = null; // username,Time,
@@ -30,10 +31,6 @@ public class GameSceneView extends SceneViewBase {
     {
         super.Init_Scene();
         frame = MainFrame.Get_Instance();
-//        frame = new JFrame();
-//        frame.setSize(ScreenWidth, ScreenHeight);
-//        frame.setVisible(true);
-
         container = frame.getContentPane();
 
         for (int i = 0; i < OBJ_ENUM_END; ++i)
@@ -66,6 +63,8 @@ public class GameSceneView extends SceneViewBase {
             }
         };
         frame.getContentPane().add(middlePanel);
+
+
         frame.revalidate();
         frame.repaint();
     }

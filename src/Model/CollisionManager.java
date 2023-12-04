@@ -1,0 +1,93 @@
+package Model;
+
+import View.GameObjectWriter;
+
+import java.util.ArrayList;
+
+import static Utils.StaticVariables.*;
+
+public class CollisionManager
+{
+    public CollisionManager(ArrayList<GameObject>[] ObjListArr)
+    {
+        this.ObjListArr = ObjListArr;
+    }
+
+    private ArrayList<GameObject>[] ObjListArr;
+
+    public void Update(float deltaTime)
+    {
+        for (var brickObject : ObjListArr[OBJ_ENUM_BRICK])
+        {
+            for (var ballObject : ObjListArr[OBJ_ENUM_BALL])
+            {
+                int collidedDir = -1;
+                if (Box_Circle_CollisionCheck(brickObject, ballObject, collidedDir))
+                {
+
+                }
+            }
+        }
+        // 블럭, 볼
+        // 아이템 플레이어
+    }
+
+    private boolean Box_Circle_CollisionCheck(GameObject box, GameObject circle, int outCollidedDir)
+    {
+        float boxPosX = box.Get_Pos().x;
+        float boxPosY = box.Get_Pos().y;
+        float circlePosX = circle.Get_Pos().x;
+        float circlePosY = circle.Get_Pos().y;
+
+        float boxWidth = ((Box)box).Get_Width();
+        float boxHeight = ((Box)box).Get_Height();
+        float radius = ((Ball)circle).Get_Radius();
+
+        float collidedLength = Math.abs(boxPosX - circlePosX);
+        float collidedHeight = Math.abs(boxPosY - circlePosY);
+        // 가로 충돌 조건
+        if (collidedLength <= boxWidth + radius)
+        {
+            // 세로 충돌 조건
+            if (collidedHeight <= boxHeight + radius)
+            {
+                // 충돌 확정                
+                if (boxPosY < circlePosY) // 박스가 더 위
+                {
+                    if(collidedHeight > collidedLength) // 세로로 겹치는 부분이 더 많다면 SOUTH
+                    {
+                        outCollidedDir = DIR_SOUTH;
+                        return true;
+                    }
+                    else
+                    {
+                        outCollidedDir = DIR_EAST;
+                        return true;
+                    }
+                }
+                else  // 충돌 확정, 박스가 더 아래
+                {
+                    if(collidedHeight > collidedLength) // 세로로 겹치는 부분이 더 많다면 NORTH
+                    {
+                        outCollidedDir = DIR_NORTH;
+                        return true;
+                    }
+                    else
+                    {
+                        outCollidedDir = DIR_WEST;
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private int CollidedDir()
+    {
+
+        
+        return DIR_END; // 에러
+    }
+}

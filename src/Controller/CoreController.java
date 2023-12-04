@@ -63,7 +63,7 @@ public class CoreController {
             }
             catch (InterruptedException e){}
 
-            modelController.Update(0.02f);
+            modelController.Update(0.1f);
             viewController.Render();
         }
     }

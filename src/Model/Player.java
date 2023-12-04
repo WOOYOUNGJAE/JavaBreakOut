@@ -1,8 +1,10 @@
 package Model;
 
 import Controller.KeyboardController;
+import MyGUI.Frame.MainFrame;
 import Utils.Vector2;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,6 +19,11 @@ public class Player extends GameObject
         vVelocity = new Vector2(0, 0);
         width = cx; height = cy;
         container = box;
+
+        JFrame frame = MainFrame.Get_Instance();
+        frame.addKeyListener(KeyboardController.Get_Instance());
+        frame.setFocusable(true);
+        frame.setFocusTraversalKeysEnabled(false);
     }
 
     KeyboardController keyController = null;

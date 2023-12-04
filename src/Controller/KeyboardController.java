@@ -5,8 +5,7 @@ import java.awt.event.KeyListener;
 import java.security.Key;
 
 public class KeyboardController implements KeyListener {
-
-    public static KeyboardController instance = null;
+public static KeyboardController instance = null;
 
     public static KeyboardController Get_Instance()
     {
@@ -22,7 +21,6 @@ public class KeyboardController implements KeyListener {
     public boolean rightActing = false;
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
@@ -30,11 +28,13 @@ public class KeyboardController implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
         {
             leftActing = true;
+            rightActing = false;
         }
 
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
         {
             rightActing = true;
+            leftActing = false;
         }
     }
 
