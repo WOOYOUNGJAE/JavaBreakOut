@@ -43,7 +43,7 @@ public class Ball extends GameObject {
                 {
                     vPos.y -= collidedLength;
                     // 끝자락에 부딪혔을 때
-                    if (Math.abs(vPos.x - collidedObject.Get_Pos().x) >= radius*0.5f + collidedObject.Get_Width()*0.4f)
+                    if (Math.abs(vPos.x - collidedObject.Get_Pos().x) >= collidedObject.Get_Width()*0.4f)
                     {
                         float velocityLength = vVelocity.Length();
                         if (vPos.x > collidedObject.Get_Pos().x) // 오른쪽
@@ -51,14 +51,14 @@ public class Ball extends GameObject {
                             // 우상단 45도 방향으로
                             vVelocity.x = 1.f;
                             vVelocity.y = -1.f;
-                            vVelocity.Multiple(velocityLength);
+                            vVelocity = vVelocity.Multiple(velocityLength);
                         }
                         else // 왼쪽
                         {
                             // 좌상단 45도 방향으로
                             vVelocity.x = -1.f;
                             vVelocity.y = -1.f;
-                            vVelocity.Multiple(velocityLength);
+                            vVelocity = vVelocity.Multiple(velocityLength);
                         }
                         return;
                     }
