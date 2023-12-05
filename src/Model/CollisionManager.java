@@ -118,42 +118,44 @@ public class CollisionManager
         float boxHeight = box.Get_Height();
         float radius = ((Ball)circle).Get_Radius();
 
-        float collidedWidth = Math.abs(boxPosX - circlePosX);
-        float collidedHeight = Math.abs(boxPosY - circlePosY);
+        float xDistance = Math.abs(boxPosX - circlePosX);
+        float yDistance = Math.abs(boxPosY - circlePosY);
+        float collidedLengthX = (boxWidth + radius) * 0.5f - xDistance; // 양수면 그만큼 겹침
+        float collidedLengthY =  (boxHeight + radius) * 0.5f - yDistance;
         // 가로 충돌 조건
-        if (collidedWidth <= (boxWidth + radius) * 0.5f)
+        if (collidedLengthX >= 0)
         {
             // 세로 충돌 조건
-            if (collidedHeight <= (boxHeight + radius) * 0.5f)
+            if (collidedLengthY >= 0)
             {
-                // 충돌 확정                
+                // 충돌 확정
                 if (boxPosY < circlePosY) // 박스가 더 위
                 {
-                    if(collidedHeight > collidedWidth) // 세로로 겹치는 부분이 더 많다면 SOUTH
+                    if(collidedLengthX >= collidedLengthY) // 가로로 겹치는 부분이 더 많다면 SOUTH
                     {
                         tempCollidedDir = DIR_SOUTH;
-                        tempCollidedLength = collidedHeight;
+                        tempCollidedLength = collidedLengthY;
                         return true;
                     }
                     else
                     {
                         tempCollidedDir = DIR_EAST;
-                        tempCollidedLength = collidedWidth;
+                        tempCollidedLength = collidedLengthX;
                         return true;
                     }
                 }
                 else  // 충돌 확정, 박스가 더 아래
                 {
-                    if(collidedHeight > collidedWidth) // 세로로 겹치는 부분이 더 많다면 NORTH
+                    if(collidedLengthX >= collidedLengthY) // 가로로 겹치는 부분이 더 많다면 NORTH
                     {
                         tempCollidedDir = DIR_NORTH;
-                        tempCollidedLength = collidedHeight;
+                        tempCollidedLength = collidedLengthY;
                         return true;
                     }
                     else
                     {
                         tempCollidedDir = DIR_WEST;
-                        tempCollidedLength = collidedWidth;
+                        tempCollidedLength = collidedLengthX;
                         return true;
                     }
                 }

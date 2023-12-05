@@ -27,6 +27,11 @@ class PlayerWriter extends GameObjectWriter
         int width = (player).Get_Width();
         int height = (player).Get_Height();
         g.fillRect((int)player.Get_Pos().x - (width / 2), (int)player.Get_Pos().y - (height/2 ), width, height);
+
+        // Edge
+        g.setColor(Color.CYAN);
+        g.fillRect((int)player.Get_Pos().x - (width / 2), (int)player.Get_Pos().y - (height/2 ), width / 10, height); // left
+        g.fillRect((int)player.Get_Pos().x + (width / 2) - width / 10, (int)player.Get_Pos().y - (height/2 ), width / 10, height); // right
     }
 }
 class WallWriter extends GameObjectWriter

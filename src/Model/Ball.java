@@ -40,9 +40,32 @@ public class Ball extends GameObject {
                     vPos.y += collidedLength;
                     break;
                 case DIR_SOUTH:
-                    vVelocity.y *= -1;
+                {
                     vPos.y -= collidedLength;
+                    // 끝자락에 부딪혔을 때
+                    if (Math.abs(vPos.x - collidedObject.Get_Pos().x) >= radius*0.5f + collidedObject.Get_Width()*0.4f)
+                    {
+                        float velocityLength = vVelocity.Length();
+                        if (vPos.x > collidedObject.Get_Pos().x) // 오른쪽
+                        {
+                            // 우상단 45도 방향으로
+                            vVelocity.x = 1.f;
+                            vVelocity.y = -1.f;
+                            vVelocity.Multiple(velocityLength);
+                        }
+                        else // 왼쪽
+                        {
+                            // 좌상단 45도 방향으로
+                            vVelocity.x = -1.f;
+                            vVelocity.y = -1.f;
+                            vVelocity.Multiple(velocityLength);
+                        }
+                        return;
+                    }
+                    vVelocity.y *= -1;
                     break;
+                }
+
                 case DIR_EAST:
                     vVelocity.x *= -1;
                     vPos.x -= collidedLength;
@@ -52,7 +75,6 @@ public class Ball extends GameObject {
                     vPos.x += collidedLength;
                     break;
             }
-            // TODO 벽돌 깨기
         }
         else if (collidedObject.Get_ObjEnum() == OBJ_ENUM_WALL) // 벽과 부딪히면
         {

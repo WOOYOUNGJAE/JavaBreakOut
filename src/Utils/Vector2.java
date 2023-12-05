@@ -33,5 +33,9 @@ public class Vector2 {
         x /= length; y/= length;
         return this;
     }
+    public float Length()
+    {
+        return (float)Math.sqrt(x*x + y*y);
+    }
 
 }
