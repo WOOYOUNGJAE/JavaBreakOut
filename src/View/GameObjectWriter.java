@@ -24,14 +24,18 @@ class PlayerWriter extends GameObjectWriter
     @Override
     public void Draw(GameObject player, Graphics g) {
         g.setColor(player.Get_Color());
-        int width = ((Player)player).Get_Width();
-        int height = ((Player)player).Get_Height();
+        int width = (player).Get_Width();
+        int height = (player).Get_Height();
         g.fillRect((int)player.Get_Pos().x - (width / 2), (int)player.Get_Pos().y - (height/2 ), width, height);
     }
 }
-class BoxWriter extends GameObjectWriter
+class WallWriter extends GameObjectWriter
 {
     @Override
-    public void Draw(GameObject player, Graphics g) {
+    public void Draw(GameObject wall, Graphics g) {
+        g.setColor(wall.Get_Color());
+        int width = (wall).Get_Width();
+        int height = (wall).Get_Height();
+        g.fillRect((int)wall.Get_Pos().x - (width / 2), (int)wall.Get_Pos().y - (height/2 ), width, height);
     }
 }

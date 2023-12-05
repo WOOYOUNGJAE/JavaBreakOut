@@ -1,15 +1,11 @@
 package View;
 
-import Controller.KeyboardController;
 import Model.GameObject;
-import Model.GameObject.*;
 import MyGUI.Frame.MainFrame;
 import MyGUI.Panel.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import static Utils.StaticVariables.*;
@@ -43,8 +39,8 @@ public class GameSceneView extends SceneViewBase {
                 case OBJ_ENUM_BALL :
                     objWriterArr[i] = new BallWriter();
                     break;
-                case OBJ_ENUM_BOX:
-                    objWriterArr[i] = new BoxWriter();
+                case OBJ_ENUM_WALL:
+                    objWriterArr[i] = new WallWriter();
                     break;
             }
         }

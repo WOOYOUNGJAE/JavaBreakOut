@@ -44,6 +44,37 @@ public class CollisionManager
                             break;
                     }
                     ballObject.OnCollision(collidedDir_ball, tempCollidedLength , brickObject);
+                    tempCollidedLength = 0.f;
+                    tempCollidedDir = -1;
+                    break;
+                }
+            }
+            for (var wallObject : ObjListArr[OBJ_ENUM_WALL])
+            {
+                // 벽돌과 공 판단
+                if (Box_Circle_CollisionCheck(wallObject, ballObject))
+                {
+                    wallObject.OnCollision(tempCollidedDir, tempCollidedLength , ballObject);
+                    int collidedDir_ball = -1;
+                    switch (tempCollidedDir)
+                    {
+                        case DIR_NORTH:
+                            collidedDir_ball = DIR_SOUTH;
+                            break;
+                        case DIR_SOUTH:
+                            collidedDir_ball = DIR_NORTH;
+                            break;
+                        case DIR_EAST:
+                            collidedDir_ball = DIR_WEST;
+                            break;
+                        case DIR_WEST:
+                            collidedDir_ball = DIR_EAST;
+                            break;
+                    }
+                    ballObject.OnCollision(collidedDir_ball, tempCollidedLength , wallObject);
+                    tempCollidedLength = 0.f;
+                    tempCollidedDir = -1;
+                    break;
                 }
             }
             tempCollidedLength = 0.f;

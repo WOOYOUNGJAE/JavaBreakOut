@@ -6,14 +6,12 @@ import Utils.Vector2;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import static Utils.StaticVariables.OBJ_ENUM_PLAYER;
 
 public class Player extends GameObject
 {
-    public Player(int x, int y, int cx, int cy, Box box)
+    public Player(int x, int y, int cx, int cy)
     {
         objectEnum = OBJ_ENUM_PLAYER;
         color = Color.GRAY;
@@ -21,7 +19,6 @@ public class Player extends GameObject
         vPos = new Vector2(x, y);
         vVelocity = new Vector2(0, 0);
         width = cx; height = cy;
-        container = box;
 
         JFrame frame = MainFrame.Get_Instance();
         frame.addKeyListener(KeyboardController.Get_Instance());
@@ -30,8 +27,6 @@ public class Player extends GameObject
     }
 
     KeyboardController keyController = null;
-
-    private Box container = null;
 
 
     @Override

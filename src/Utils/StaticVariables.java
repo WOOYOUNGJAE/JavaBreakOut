@@ -19,7 +19,7 @@ public class StaticVariables {
     public static final int OBJ_ENUM_PLAYER = 0;
     public static final int OBJ_ENUM_BALL = 1;
     public static final int OBJ_ENUM_BRICK = 2;
-    public static final int OBJ_ENUM_BOX = 3;
+    public static final int OBJ_ENUM_WALL = 3;
     public static final int OBJ_ENUM_END = 4;
 
 

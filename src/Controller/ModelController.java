@@ -12,7 +12,6 @@ public class ModelController {
     private CollisionManager collisionManager = null;
     private int curScene = START_SCENE;
     private int prevScene = START_SCENE;
-    private Box box = new Box(ScreenWidth>>1, ScreenHeight>>1, ScreenWidth, ScreenHeight );
     public void Initialize()
     {
         ObjListArr = CoreController.Get_Instance().Get_ObjListArr();
@@ -54,16 +53,18 @@ public class ModelController {
         curScene = nextScene;
         if (nextScene == GAME_SCENE)
         {
-            ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight >> 1, PlayerWidth, PlayerHeight, box));
-            ObjListArr[OBJ_ENUM_BOX].add(box);
+            ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight >> 1, PlayerWidth, PlayerHeight));
+            ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth >> 1, ScreenHeight / 40 , ScreenWidth, ScreenHeight / 20)); // North
+            ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth - ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // East
+            ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // West
             int nextLevel = CoreController.Get_Instance().Get_StartChecker().Get_Level();
-            switch (nextLevel)
+            switch (nextLevel) // Add Bricks and Balls
             {
                 case LEVEL_EASY:
                 {
                     for (int i = 0; i < 1; ++i)
                     {
-                        ObjListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, 0 * ScreenHeight >> 1, BrickWidth >> 1, box));
+                        ObjListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, ScreenHeight >> 2, BrickWidth >> 1));
                     }
                     break;
                 }
