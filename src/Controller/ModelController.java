@@ -71,9 +71,16 @@ public class ModelController {
                     int firstYPos = (ScreenHeight>>4) + 25;
                     for (int i = 0; i < colCount * rowCount /*4X4*/; ++i)
                     {
-                        ObjListArr[OBJ_ENUM_BRICK].add(new Brick(firstXPos + brickWidth * (i % colCount) ,
+                        Brick brick  = new Brick(firstXPos + brickWidth * (i % colCount) ,
                                 firstYPos+ brickHeight * (i / colCount),
-                                brickWidth, brickHeight,1 ));
+                                brickWidth, brickHeight,1 );
+                        ObjListArr[OBJ_ENUM_BRICK].add(brick);
+
+                        if (i == 8)
+                        {
+                            brick.Set_HP(3);
+                            brick.Set_Color();
+                        }
                     }
                     // Create Ball
                     for (int i = 0; i < 1; ++i)

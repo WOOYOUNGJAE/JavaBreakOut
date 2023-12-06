@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.CoreController;
 import Utils.Vector2;
 
 import java.awt.*;
@@ -58,6 +59,7 @@ public class Brick extends GameObject
             if (hp <= 0)
             {
                 isAlive = false;
+                CoreController.Get_Instance().Remove_Object(this, OBJ_ENUM_BRICK);
             }
         }
     }

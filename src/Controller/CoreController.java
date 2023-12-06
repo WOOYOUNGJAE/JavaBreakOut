@@ -75,4 +75,14 @@ public class CoreController {
         viewController.Change_SceneView(nextScene);
     }
 
+    public void Remove_Object(GameObject obj, int objEnum)
+    {
+        if (objListArr[objEnum].remove(obj) == false)
+        {
+            // TODO Exeption
+            int a = 1;
+        }
+
+    }
+
 }
