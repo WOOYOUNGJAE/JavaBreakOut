@@ -2,7 +2,6 @@ package View;
 
 import Model.GameObject;
 import MyGUI.Frame.MainFrame;
-import MyGUI.Panel.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +19,6 @@ public class GameSceneView extends SceneViewBase {
     private JPanel middlePanel = null; // InGame
     private ArrayList<GameObject>[] objListArr = null;
     private GameObjectWriter[] objWriterArr = new GameObjectWriter[OBJ_ENUM_END];
-    private GamePanel gamePanel = new GamePanel();
 
     @Override
     public void Init_Scene()
@@ -65,7 +63,6 @@ public class GameSceneView extends SceneViewBase {
             }
         };
         frame.getContentPane().add(middlePanel);
-
 
         frame.revalidate();
         frame.repaint();

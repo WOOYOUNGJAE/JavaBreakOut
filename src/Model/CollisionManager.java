@@ -9,10 +9,10 @@ public class CollisionManager
 {
     public CollisionManager(ArrayList<GameObject>[] ObjListArr)
     {
-        this.ObjListArr = ObjListArr;
+        this.objListArr = ObjListArr;
     }
 
-    private ArrayList<GameObject>[] ObjListArr;
+    private ArrayList<GameObject>[] objListArr;
 
     private int tempCollidedDir = -1;
     private float tempCollidedLength = 0.f;
@@ -28,8 +28,8 @@ public class CollisionManager
     void Process_TwoLayer(int BoxObjEnum, int CircleObjEnum)
     {
         // 충돌 방향 : 박스 기준
-        for (var circleTypeObject : ObjListArr[CircleObjEnum]) {
-            for (var boxTypeObject : ObjListArr[BoxObjEnum]) {
+        for (var circleTypeObject : objListArr[CircleObjEnum]) {
+            for (var boxTypeObject : objListArr[BoxObjEnum]) {
                 // 벽돌과 공 판단
                 if (Box_Circle_CollisionCheck(boxTypeObject, circleTypeObject)) {
                     boxTypeObject.OnCollision(tempCollidedDir, tempCollidedLength, circleTypeObject);

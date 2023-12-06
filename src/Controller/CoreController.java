@@ -3,7 +3,6 @@ package Controller;
 import Model.GameObject;
 import Model.StartChecker;
 import MyGUI.Frame.MainFrame;
-import MyGUI.Panel.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,8 +49,6 @@ public class CoreController {
         mainFrame.Initialize();
         viewController.Initialize();
     }
-    JFrame my_frame;// = new JFrame();
-    GamePanel tempanel;// = new GamePanel();
     // Main에서 호출
     public void Run()
     {
