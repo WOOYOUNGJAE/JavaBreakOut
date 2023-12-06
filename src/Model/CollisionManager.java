@@ -139,7 +139,7 @@ public class CollisionManager
                     }
                     else
                     {
-                        tempCollidedDir = DIR_EAST;
+                        tempCollidedDir = boxPosX > circlePosX ? DIR_WEST : DIR_EAST;
                         tempCollidedLength = collidedLengthX;
                         return true;
                     }
@@ -154,7 +154,7 @@ public class CollisionManager
                     }
                     else
                     {
-                        tempCollidedDir = DIR_WEST;
+                        tempCollidedDir = boxPosX > circlePosX ? DIR_WEST : DIR_EAST;
                         tempCollidedLength = collidedLengthX;
                         return true;
                     }

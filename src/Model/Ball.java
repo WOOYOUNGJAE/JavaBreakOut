@@ -51,6 +51,7 @@ public class Ball extends GameObject {
                             // 우상단 45도 방향으로
                             vVelocity.x = 1.f;
                             vVelocity.y = -1.f;
+                            vVelocity.Normalize();
                             vVelocity = vVelocity.Multiple(velocityLength);
                         }
                         else // 왼쪽
@@ -58,6 +59,7 @@ public class Ball extends GameObject {
                             // 좌상단 45도 방향으로
                             vVelocity.x = -1.f;
                             vVelocity.y = -1.f;
+                            vVelocity.Normalize();
                             vVelocity = vVelocity.Multiple(velocityLength);
                         }
                         return;

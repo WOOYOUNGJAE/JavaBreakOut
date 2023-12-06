@@ -62,9 +62,25 @@ public class ModelController {
             {
                 case LEVEL_EASY:
                 {
+                    // Create Bricks, 4 X 4
+                    int colCount = 4; // 열이 몇 개인지 (가로 벽돌 개수)
+                    int rowCount = 4; // 행이 몇 개인지 (세로 벽돌 개수)
+                    int brickWidth = PlayerWidth;
+                    int brickHeight = PlayerHeight;
+                    int firstXPos = (ScreenWidth>>1) - brickWidth * (colCount>>1) + (int)(brickWidth * 0.5f);
+                    int firstYPos = (ScreenHeight>>4) + 25;
+                    for (int i = 0; i < colCount * rowCount /*4X4*/; ++i)
+                    {
+                        ObjListArr[OBJ_ENUM_BRICK].add(new Brick(firstXPos + brickWidth * (i % colCount) ,
+                                firstYPos+ brickHeight * (i / colCount),
+                                brickWidth, brickHeight));
+                    }
+                    // Create Ball
                     for (int i = 0; i < 1; ++i)
                     {
-                        ObjListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, ScreenHeight >> 2, BrickWidth >> 1));
+                        ObjListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, // X위치 스크린 중간
+                                (int)ObjListArr[OBJ_ENUM_BRICK].get(colCount * rowCount - 1).Get_Pos().y + brickWidth + 5, // y위치 최소한 제일 밑에 있는 벽돌 아래
+                                BrickWidth >> 1));
                     }
                     break;
                 }

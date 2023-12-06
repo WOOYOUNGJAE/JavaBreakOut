@@ -44,3 +44,21 @@ class WallWriter extends GameObjectWriter
         g.fillRect((int)wall.Get_Pos().x - (width / 2), (int)wall.Get_Pos().y - (height/2 ), width, height);
     }
 }
+class BrickWriter extends GameObjectWriter
+{
+    @Override
+    public void Draw(GameObject brick, Graphics g) {
+        g.setColor(brick.Get_Color());
+        int width = (brick).Get_Width();
+        int height = (brick).Get_Height();
+        // hp 1일 때는 채워지지 않은 사각형
+        if (((Brick)brick).Get_HP() == 1)
+        {
+            g.drawRect((int)brick.Get_Pos().x - (width / 2), (int)brick.Get_Pos().y - (height/2 ), width, height);
+        }
+        else
+        {
+            g.fillRect((int)brick.Get_Pos().x - (width / 2), (int)brick.Get_Pos().y - (height/2 ), width, height);
+        }
+    }
+}
