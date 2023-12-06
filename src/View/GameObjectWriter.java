@@ -48,6 +48,11 @@ class BrickWriter extends GameObjectWriter
 {
     @Override
     public void Draw(GameObject brick, Graphics g) {
+        // 죽었으면 그리지 않는다
+        if(((Brick)brick).Is_Alive() == false)
+        {
+            return;
+        }
         g.setColor(brick.Get_Color());
         int width = (brick).Get_Width();
         int height = (brick).Get_Height();

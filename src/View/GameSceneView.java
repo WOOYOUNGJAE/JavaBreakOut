@@ -28,7 +28,7 @@ public class GameSceneView extends SceneViewBase {
         super.Init_Scene();
         frame = MainFrame.Get_Instance();
         container = frame.getContentPane();
-
+        frame.setBackground(Color.WHITE);
         for (int i = 0; i < OBJ_ENUM_END; ++i)
         {
             switch (i)

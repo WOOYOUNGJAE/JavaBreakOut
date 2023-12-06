@@ -53,7 +53,7 @@ public class ModelController {
         curScene = nextScene;
         if (nextScene == GAME_SCENE)
         {
-            ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight >> 1, PlayerWidth, PlayerHeight));
+            ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight - PlayerHeight - 40, PlayerWidth, PlayerHeight));
             ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth >> 1, ScreenHeight / 40 , ScreenWidth, ScreenHeight / 20)); // North
             ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth - ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // East
             ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // West
@@ -73,7 +73,7 @@ public class ModelController {
                     {
                         ObjListArr[OBJ_ENUM_BRICK].add(new Brick(firstXPos + brickWidth * (i % colCount) ,
                                 firstYPos+ brickHeight * (i / colCount),
-                                brickWidth, brickHeight));
+                                brickWidth, brickHeight,1 ));
                     }
                     // Create Ball
                     for (int i = 0; i < 1; ++i)

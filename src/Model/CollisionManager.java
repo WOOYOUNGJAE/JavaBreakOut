@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import static Utils.StaticVariables.*;
 
+// 오직 박스 - 구 충돌만
 public class CollisionManager
 {
     public CollisionManager(ArrayList<GameObject>[] ObjListArr)
@@ -19,17 +20,21 @@ public class CollisionManager
     public void Update(float deltaTime)
     {
         // 충돌 방향 : 박스 기준
-        for (var ballObject : ObjListArr[OBJ_ENUM_BALL])
-        {
-            for (var brickObject : ObjListArr[OBJ_ENUM_BRICK])
-            {
+        Process_TwoLayer(OBJ_ENUM_WALL, OBJ_ENUM_BALL);
+        Process_TwoLayer(OBJ_ENUM_PLAYER, OBJ_ENUM_BALL);
+        Process_TwoLayer(OBJ_ENUM_BRICK, OBJ_ENUM_BALL);
+    }
+
+    void Process_TwoLayer(int BoxObjEnum, int CircleObjEnum)
+    {
+        // 충돌 방향 : 박스 기준
+        for (var circleTypeObject : ObjListArr[CircleObjEnum]) {
+            for (var boxTypeObject : ObjListArr[BoxObjEnum]) {
                 // 벽돌과 공 판단
-                if (Box_Circle_CollisionCheck(brickObject, ballObject))
-                {
-                    brickObject.OnCollision(tempCollidedDir, tempCollidedLength , ballObject);
+                if (Box_Circle_CollisionCheck(boxTypeObject, circleTypeObject)) {
+                    boxTypeObject.OnCollision(tempCollidedDir, tempCollidedLength, circleTypeObject);
                     int collidedDir_ball = -1;
-                    switch (tempCollidedDir)
-                    {
+                    switch (tempCollidedDir) {
                         case DIR_NORTH:
                             collidedDir_ball = DIR_SOUTH;
                             break;
@@ -43,66 +48,13 @@ public class CollisionManager
                             collidedDir_ball = DIR_EAST;
                             break;
                     }
-                    ballObject.OnCollision(collidedDir_ball, tempCollidedLength , brickObject);
+                    circleTypeObject.OnCollision(collidedDir_ball, tempCollidedLength, boxTypeObject);
                     tempCollidedLength = 0.f;
                     tempCollidedDir = -1;
                     break;
                 }
-            }
-            for (var wallObject : ObjListArr[OBJ_ENUM_WALL])
-            {
-                // 벽돌과 공 판단
-                if (Box_Circle_CollisionCheck(wallObject, ballObject))
-                {
-                    wallObject.OnCollision(tempCollidedDir, tempCollidedLength , ballObject);
-                    int collidedDir_ball = -1;
-                    switch (tempCollidedDir)
-                    {
-                        case DIR_NORTH:
-                            collidedDir_ball = DIR_SOUTH;
-                            break;
-                        case DIR_SOUTH:
-                            collidedDir_ball = DIR_NORTH;
-                            break;
-                        case DIR_EAST:
-                            collidedDir_ball = DIR_WEST;
-                            break;
-                        case DIR_WEST:
-                            collidedDir_ball = DIR_EAST;
-                            break;
-                    }
-                    ballObject.OnCollision(collidedDir_ball, tempCollidedLength , wallObject);
-                    tempCollidedLength = 0.f;
-                    tempCollidedDir = -1;
-                    break;
-                }
-            }
-            tempCollidedLength = 0.f;
-            // 플레이어와 공 판단, 충돌 방향 플레이어 기준
-            if (Box_Circle_CollisionCheck(ObjListArr[OBJ_ENUM_PLAYER].get(0), ballObject))
-            {
-                ObjListArr[OBJ_ENUM_PLAYER].get(0).OnCollision(tempCollidedDir,tempCollidedLength , ballObject);
-                int collidedDir_ball = -1;
-                switch (tempCollidedDir)
-                {
-                    case DIR_NORTH:
-                        collidedDir_ball = DIR_SOUTH;
-                        break;
-                    case DIR_SOUTH:
-                        collidedDir_ball = DIR_NORTH;
-                        break;
-                    case DIR_EAST:
-                        collidedDir_ball = DIR_WEST;
-                        break;
-                    case DIR_WEST:
-                        collidedDir_ball = DIR_EAST;
-                        break;
-                }
-                ballObject.OnCollision(collidedDir_ball,tempCollidedLength , ObjListArr[OBJ_ENUM_PLAYER].get(0));
             }
         }
-        // 블럭, 볼
-        // 아이템 플레이어
         tempCollidedDir = -1;
         tempCollidedLength = 0.f;
     }
@@ -165,3 +117,91 @@ public class CollisionManager
         return false;
     }
 }
+
+
+
+
+
+
+//        for (var ballObject : ObjListArr[OBJ_ENUM_BALL])
+//        {
+//            for (var brickObject : ObjListArr[OBJ_ENUM_BRICK])
+//            {
+//                // 벽돌과 공 판단
+//                if (Box_Circle_CollisionCheck(brickObject, ballObject))
+//                {
+//                    brickObject.OnCollision(tempCollidedDir, tempCollidedLength , ballObject);
+//                    int collidedDir_ball = -1;
+//                    switch (tempCollidedDir)
+//                    {
+//                        case DIR_NORTH:
+//                            collidedDir_ball = DIR_SOUTH;
+//                            break;
+//                        case DIR_SOUTH:
+//                            collidedDir_ball = DIR_NORTH;
+//                            break;
+//                        case DIR_EAST:
+//                            collidedDir_ball = DIR_WEST;
+//                            break;
+//                        case DIR_WEST:
+//                            collidedDir_ball = DIR_EAST;
+//                            break;
+//                    }
+//                    ballObject.OnCollision(collidedDir_ball, tempCollidedLength , brickObject);
+//                    tempCollidedLength = 0.f;
+//                    tempCollidedDir = -1;
+//                    break;
+//                }
+//            }
+//            for (var wallObject : ObjListArr[OBJ_ENUM_WALL])
+//            {
+//                // 벽돌과 공 판단
+//                if (Box_Circle_CollisionCheck(wallObject, ballObject))
+//                {
+//                    wallObject.OnCollision(tempCollidedDir, tempCollidedLength , ballObject);
+//                    int collidedDir_ball = -1;
+//                    switch (tempCollidedDir)
+//                    {
+//                        case DIR_NORTH:
+//                            collidedDir_ball = DIR_SOUTH;
+//                            break;
+//                        case DIR_SOUTH:
+//                            collidedDir_ball = DIR_NORTH;
+//                            break;
+//                        case DIR_EAST:
+//                            collidedDir_ball = DIR_WEST;
+//                            break;
+//                        case DIR_WEST:
+//                            collidedDir_ball = DIR_EAST;
+//                            break;
+//                    }
+//                    ballObject.OnCollision(collidedDir_ball, tempCollidedLength , wallObject);
+//                    tempCollidedLength = 0.f;
+//                    tempCollidedDir = -1;
+//                    break;
+//                }
+//            }
+//            tempCollidedLength = 0.f;
+//            // 플레이어와 공 판단, 충돌 방향 플레이어 기준
+//            if (Box_Circle_CollisionCheck(ObjListArr[OBJ_ENUM_PLAYER].get(0), ballObject))
+//            {
+//                ObjListArr[OBJ_ENUM_PLAYER].get(0).OnCollision(tempCollidedDir,tempCollidedLength , ballObject);
+//                int collidedDir_ball = -1;
+//                switch (tempCollidedDir)
+//                {
+//                    case DIR_NORTH:
+//                        collidedDir_ball = DIR_SOUTH;
+//                        break;
+//                    case DIR_SOUTH:
+//                        collidedDir_ball = DIR_NORTH;
+//                        break;
+//                    case DIR_EAST:
+//                        collidedDir_ball = DIR_WEST;
+//                        break;
+//                    case DIR_WEST:
+//                        collidedDir_ball = DIR_EAST;
+//                        break;
+//                }
+//                ballObject.OnCollision(collidedDir_ball,tempCollidedLength , ObjListArr[OBJ_ENUM_PLAYER].get(0));
+//            }
+//        }

@@ -78,7 +78,7 @@ public class Ball extends GameObject {
                     break;
             }
         }
-        else if (collidedObject.Get_ObjEnum() == OBJ_ENUM_WALL) // 벽과 부딪히면
+        else if (collidedObject.Get_ObjEnum() == OBJ_ENUM_WALL || collidedObject.Get_ObjEnum() == OBJ_ENUM_BRICK) // 벽이나 벽돌과 부딪히면
         {
             switch (collidedDir)
             {
