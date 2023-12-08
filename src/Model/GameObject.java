@@ -11,7 +11,8 @@ public abstract class GameObject {
     public int Get_ObjEnum() {return objectEnum;}
     protected Vector2 vPos;
     protected Vector2 vVelocity;
-
+    protected boolean toBeDeleted = false;
+    public boolean isToBeDeleted() {return toBeDeleted;}
     protected int width;
     protected int height;
 
@@ -21,6 +22,11 @@ public abstract class GameObject {
     // getter
     // Draw Property
     protected Color color = Color.black;
+
+
+    protected int radius;
+
+    public int Get_Radius() {return radius;}
     // Getter Setter
     public int Get_Width() {return width;}
     public int Get_Height() {return height;}

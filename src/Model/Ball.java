@@ -14,9 +14,6 @@ public class Ball extends GameObject {
     }
 
 
-    private int radius;
-
-    public int Get_Radius() {return radius;}
 
     @Override
     public void Update(float deltaTime) {

@@ -3,6 +3,7 @@ package Controller;
 import Model.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static Utils.StaticVariables.*;
 
@@ -33,13 +34,29 @@ public class ModelController {
             {
                 for (var innerIter : iter)
                 {
-                    if (innerIter != null) {
+                    if (innerIter != null || innerIter.isToBeDeleted() == false) {
                         innerIter.Update(deltaTime);
                     }
                 }
             }
             // Late Update
             collisionManager.Update(deltaTime);
+
+            // 충돌이벤트까지 모두 끝나면 지워야 할 오브젝트 지우기
+            for (var iter : ObjListArr)
+            {
+                Iterator<GameObject> iterator = iter.iterator();
+
+                while (iterator.hasNext())
+                {
+                    var innerIter = iterator.next();
+
+                    if (innerIter != null && innerIter.isToBeDeleted()) {
+                        iterator.remove();  // Iterator의 remove 메서드를 사용하여 안전하게 원소를 제거
+                    }
+                }
+            }
+
         }
 
     }

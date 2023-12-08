@@ -20,7 +20,8 @@ public class StaticVariables {
     public static final int OBJ_ENUM_BALL = 1;
     public static final int OBJ_ENUM_BRICK = 2;
     public static final int OBJ_ENUM_WALL = 3;
-    public static final int OBJ_ENUM_END = 4;
+    public static final int OBJ_ENUM_ITEM = 4;
+    public static final int OBJ_ENUM_END = 5;
 
 
     // Dir
@@ -31,5 +32,13 @@ public class StaticVariables {
     public static final int DIR_END = -1;
 
     public static final float EPSILON = 1e-6f;
+
+    // ITEM TYPE
+    public static final int ITEM_TYPE_WIDTH_LONG = 0;
+    public static final int ITEM_TYPE_WIDTH_SHORT = 1;
+    public static final int ITEM_TYPE_BALL_SLOW = 2;
+    public static final int ITEM_TYPE_BALL_FAST = 3;
+    public static final int ITEM_TYPE_END = 4;
+
 
 }

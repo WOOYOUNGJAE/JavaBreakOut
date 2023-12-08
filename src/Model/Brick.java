@@ -4,6 +4,8 @@ import Controller.CoreController;
 import Utils.Vector2;
 
 import java.awt.*;
+import java.sql.Time;
+import java.time.LocalDateTime;
 
 import static Utils.StaticVariables.*;
 
@@ -50,6 +52,11 @@ public class Brick extends GameObject
 
     @Override
     public void OnCollision(int collidedDir, float collidedLength, GameObject collidedObject) {
+        if (isAlive == false)
+        {
+            return;
+        }
+        
         if (collidedObject.Get_ObjEnum() == OBJ_ENUM_BALL)
         {
             --hp;
@@ -59,6 +66,14 @@ public class Brick extends GameObject
             if (hp <= 0)
             {
                 isAlive = false;
+                toBeDeleted = true;
+                // 아이템 뿌리기
+                // 50%확률로 아이템 생성
+                if (System.currentTimeMillis() % 2 == 0)
+                {
+                    int itemRandomType = (int)System.currentTimeMillis() % ITEM_TYPE_END;
+                    CoreController.Get_Instance().Add_GameObject(new Item((int)vPos.x, (int)vPos.y, BrickWidth >> 1, itemRandomType), OBJ_ENUM_ITEM);
+                }
                 CoreController.Get_Instance().Remove_Object(this, OBJ_ENUM_BRICK);
             }
         }

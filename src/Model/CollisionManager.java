@@ -23,6 +23,7 @@ public class CollisionManager
         Process_TwoLayer(OBJ_ENUM_WALL, OBJ_ENUM_BALL);
         Process_TwoLayer(OBJ_ENUM_PLAYER, OBJ_ENUM_BALL);
         Process_TwoLayer(OBJ_ENUM_BRICK, OBJ_ENUM_BALL);
+        Process_TwoLayer(OBJ_ENUM_PLAYER, OBJ_ENUM_ITEM);
     }
 
     void Process_TwoLayer(int BoxObjEnum, int CircleObjEnum)
@@ -68,7 +69,7 @@ public class CollisionManager
 
         float boxWidth = box.Get_Width();
         float boxHeight = box.Get_Height();
-        float radius = ((Ball)circle).Get_Radius();
+        float radius = (circle).Get_Radius();
 
         float xDistance = Math.abs(boxPosX - circlePosX);
         float yDistance = Math.abs(boxPosY - circlePosY);

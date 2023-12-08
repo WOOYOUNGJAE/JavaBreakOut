@@ -49,10 +49,11 @@ class BrickWriter extends GameObjectWriter
     @Override
     public void Draw(GameObject brick, Graphics g) {
         // 죽었으면 그리지 않는다
-        if(((Brick)brick).Is_Alive() == false)
+        if(brick.isToBeDeleted())
         {
             return;
         }
+
         g.setColor(brick.Get_Color());
         int width = (brick).Get_Width();
         int height = (brick).Get_Height();
@@ -65,5 +66,18 @@ class BrickWriter extends GameObjectWriter
         {
             g.fillRect((int)brick.Get_Pos().x - (width / 2), (int)brick.Get_Pos().y - (height/2 ), width, height);
         }
+    }
+}
+
+
+class ItemWriter extends GameObjectWriter
+{
+    @Override
+    public void Draw(GameObject item, Graphics g) {
+        g.setColor(item.Get_Color());
+        int radius = ((Item)item).Get_Radius();
+        g.fillOval((int)item.Get_Pos().x - radius, (int)item.Get_Pos().y - radius,
+                radius * 2, radius *2);
+
     }
 }

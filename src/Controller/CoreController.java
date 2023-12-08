@@ -35,6 +35,10 @@ public class CoreController {
     ModelController modelController = null;
     ViewController viewController = null;
     public ArrayList<GameObject>[] Get_ObjListArr() {return objListArr; }
+    public void Add_GameObject(GameObject obj, int objEnum)
+    {
+        objListArr[objEnum].add(obj);
+    }
     public void Initialize()
     {
         for (int i = 0; i < objListArr.length; ++i)
