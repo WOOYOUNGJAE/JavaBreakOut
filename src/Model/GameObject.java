@@ -18,6 +18,7 @@ public abstract class GameObject {
 
     public Vector2 Get_Pos() {return vPos;}
     public Vector2 Get_Velocity() {return vVelocity;}
+    public void Set_Velocity(Vector2 vec2) {vVelocity = vec2;}
 
     // getter
     // Draw Property

@@ -8,8 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static Utils.StaticVariables.OBJ_ENUM_END;
-import static Utils.StaticVariables.START_SCENE;
+import static Utils.StaticVariables.*;
 
 // 가장 상위 컨트롤러(매니저), 하위 클래스에서 손쉽게 접근할 수 있도록 싱글톤으로
 public class CoreController {
@@ -84,6 +83,15 @@ public class CoreController {
             int a = 1;
         }
 
+    }
+
+    public void Change_BallSpeed(boolean slower)
+    {
+        float multiple = slower ? 0.5f : 1.5f;
+        for (var iter : objListArr[OBJ_ENUM_BALL])
+        {
+            iter.Set_Velocity(iter.Get_Velocity().Multiple(multiple));
+        }
     }
 
 }

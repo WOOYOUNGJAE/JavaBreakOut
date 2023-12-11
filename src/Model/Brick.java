@@ -75,6 +75,11 @@ public class Brick extends GameObject
                     CoreController.Get_Instance().Add_GameObject(new Item((int)vPos.x, (int)vPos.y, BrickWidth >> 1, itemRandomType), OBJ_ENUM_ITEM);
                 }
                 CoreController.Get_Instance().Remove_Object(this, OBJ_ENUM_BRICK);
+                if (CoreController.Get_Instance().Get_ObjListArr()[OBJ_ENUM_BRICK].isEmpty())
+                {
+                    GameManager.Get_Instance().CompleteTimer();
+                }
+
             }
         }
     }

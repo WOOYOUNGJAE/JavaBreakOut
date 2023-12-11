@@ -14,7 +14,7 @@ public class UserManager {
     }
 
     private ArrayList<User> userList = new ArrayList<>();
-    private User curUser = null;
+    public User curUser = null;
     public void Set_User(User user) {curUser = user;}
     public void Set_User(String strName) {curUser = Find_User(strName);}
 

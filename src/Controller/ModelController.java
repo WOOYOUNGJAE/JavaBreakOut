@@ -9,14 +9,14 @@ import static Utils.StaticVariables.*;
 
 public class ModelController {
 
-    private ArrayList<GameObject>[] ObjListArr;
+    private ArrayList<GameObject>[] objListArr;
     private CollisionManager collisionManager = null;
     private int curScene = START_SCENE;
     private int prevScene = START_SCENE;
     public void Initialize()
     {
-        ObjListArr = CoreController.Get_Instance().Get_ObjListArr();
-        collisionManager = new CollisionManager(ObjListArr);
+        objListArr = CoreController.Get_Instance().Get_ObjListArr();
+        collisionManager = new CollisionManager(objListArr);
     }
     public void Update(float deltaTime)
     {
@@ -30,7 +30,7 @@ public class ModelController {
         }
         else if (curScene == GAME_SCENE)
         {
-            for (var iter : ObjListArr)
+            for (var iter : objListArr)
             {
                 for (var innerIter : iter)
                 {
@@ -43,7 +43,7 @@ public class ModelController {
             collisionManager.Update(deltaTime);
 
             // 충돌이벤트까지 모두 끝나면 지워야 할 오브젝트 지우기
-            for (var iter : ObjListArr)
+            for (var iter : objListArr)
             {
                 Iterator<GameObject> iterator = iter.iterator();
 
@@ -57,6 +57,8 @@ public class ModelController {
                 }
             }
 
+            // 시간 세기
+            GameManager.Get_Instance().Update();
         }
 
     }
@@ -70,10 +72,10 @@ public class ModelController {
         curScene = nextScene;
         if (nextScene == GAME_SCENE)
         {
-            ObjListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight - PlayerHeight - 40, PlayerWidth, PlayerHeight));
-            ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth >> 1, ScreenHeight / 40 , ScreenWidth, ScreenHeight / 20)); // North
-            ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth - ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // East
-            ObjListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // West
+            objListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight - PlayerHeight - 40, PlayerWidth, PlayerHeight));
+            objListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth >> 1, ScreenHeight / 40 , ScreenWidth, ScreenHeight / 20)); // North
+            objListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth - ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // East
+            objListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // West
             int nextLevel = CoreController.Get_Instance().Get_StartChecker().Get_Level();
             switch (nextLevel) // Add Bricks and Balls
             {
@@ -91,7 +93,7 @@ public class ModelController {
                         Brick brick  = new Brick(firstXPos + brickWidth * (i % colCount) ,
                                 firstYPos+ brickHeight * (i / colCount),
                                 brickWidth, brickHeight,1 );
-                        ObjListArr[OBJ_ENUM_BRICK].add(brick);
+                        objListArr[OBJ_ENUM_BRICK].add(brick);
 
                         if (i == 8)
                         {
@@ -102,8 +104,8 @@ public class ModelController {
                     // Create Ball
                     for (int i = 0; i < 1; ++i)
                     {
-                        ObjListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, // X위치 스크린 중간
-                                (int)ObjListArr[OBJ_ENUM_BRICK].get(colCount * rowCount - 1).Get_Pos().y + brickWidth + 5, // y위치 최소한 제일 밑에 있는 벽돌 아래
+                        objListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, // X위치 스크린 중간
+                                (int) objListArr[OBJ_ENUM_BRICK].get(colCount * rowCount - 1).Get_Pos().y + brickWidth + 5, // y위치 최소한 제일 밑에 있는 벽돌 아래
                                 BrickWidth >> 1));
                     }
                     break;
@@ -120,7 +122,16 @@ public class ModelController {
                     break;
 
             }
+            GameManager.Get_Instance().TriggerTimer();
         }
     }
 
+    public void Change_BallSpeed(boolean slower)
+    {
+        float multiple = slower ? 0.5f : 1.5f;
+        for (var iter : objListArr[OBJ_ENUM_BALL])
+        {
+            iter.Set_Velocity(iter.Get_Velocity().Multiple(multiple));
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package View;
 
+import Model.GameManager;
 import Model.GameObject;
 import MyGUI.Frame.MainFrame;
 
@@ -66,6 +67,26 @@ public class GameSceneView extends SceneViewBase {
             }
         };
         frame.getContentPane().add(middlePanel);
+
+        topPanel = new JPanel()
+        {
+//            @Override
+//            public void paintComponent(Graphics g)
+//            {
+//                for (int i = OBJ_ENUM_PLAYER; i < OBJ_ENUM_END; ++i)
+//                {
+//                    for (var iter : objListArr[i])
+//                    {
+//                        if (iter != null)
+//                        {
+//                            objWriterArr[i].Draw(iter, g);
+//                        }
+//                    }
+//                }
+//            }
+        };
+        topPanel.add(GameManager.Get_Instance().timeAndScoreLabel);
+        frame.getContentPane().add(topPanel, BorderLayout.NORTH);
 
         frame.revalidate();
         frame.repaint();
