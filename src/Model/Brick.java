@@ -24,6 +24,7 @@ public class Brick extends GameObject
     boolean isAlive = true;
     int hp = 1;
 
+    
     public boolean Is_Alive(){return isAlive;}
     public int Get_HP() {return hp;}
     public void Set_HP(int hp) {this.hp = hp;}

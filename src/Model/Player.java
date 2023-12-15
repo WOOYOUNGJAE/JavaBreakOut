@@ -51,26 +51,26 @@ public class Player extends GameObject
         vPos = vPos.Plus(vVelocity.Multiple(deltaTime));
     }
 
-//    @Override
-//    public void OnCollision(int collidedDir, float collidedLength, GameObject collidedObject) {
-//        if (collidedObject.Get_ObjEnum() == OBJ_ENUM_ITEM)
-//        {
-//            switch (((Item)collidedObject).Get_ItemType())
-//            {
-//                case ITEM_TYPE_WIDTH_LONG : // 파란색
-//                    width *= 1.5f;
-//                    break;
-//                case ITEM_TYPE_WIDTH_SHORT: // 마젠타, 핑크
-//                    width *= 0.5f;
-//                    break;
-//                case ITEM_TYPE_BALL_SLOW: // 초록색
-//                    CoreController.Get_Instance().Change_BallSpeed(true);
-//                    break;
-//                case ITEM_TYPE_BALL_FAST: // 빨간색
-//                    CoreController.Get_Instance().Change_BallSpeed(false);
-//                    break;
-//            }
-//
-//        }
-//    }
+    @Override
+    public void OnCollision(int collidedDir, float collidedLength, GameObject collidedObject) {
+        if (collidedObject.Get_ObjEnum() == OBJ_ENUM_ITEM)
+        {
+            switch (((Item)collidedObject).Get_ItemType())
+            {
+                case ITEM_TYPE_WIDTH_LONG : // 파란색
+                    width *= 1.5f;
+                    break;
+                case ITEM_TYPE_WIDTH_SHORT: // 마젠타, 핑크
+                    width *= 0.5f;
+                    break;
+                case ITEM_TYPE_BALL_SLOW: // 초록색
+                    CoreController.Get_Instance().Change_BallSpeed(true);
+                    break;
+                case ITEM_TYPE_BALL_FAST: // 빨간색
+                    CoreController.Get_Instance().Change_BallSpeed(false);
+                    break;
+            }
+
+        }
+    }
 }

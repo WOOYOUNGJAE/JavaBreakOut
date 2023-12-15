@@ -15,6 +15,17 @@ import static Utils.StaticVariables.*;
 public class StartSceneView extends SceneViewBase {
     public StartSceneView()
     {
+        Init_Scene();
+    }
+
+    private JPanel topPanel = null;
+    private JPanel middlePanel = null;
+    private PanelWithTextInput bottomPanel = null;
+    private JLabel label = null;
+    private JButton startButton = null;
+    private StartChecker startChecker = null; // Model
+    @Override
+    public void Init_Scene() {
         frame = MainFrame.Get_Instance();
         container = frame.getContentPane();
         startChecker = new StartChecker();
@@ -115,17 +126,9 @@ public class StartSceneView extends SceneViewBase {
         });
         bottomPanel.Add_Button(jButton);
         container.add(bottomPanel, BorderLayout.SOUTH);
-    }
 
-    private JPanel topPanel = null;
-    private JPanel middlePanel = null;
-    private PanelWithTextInput bottomPanel = null;
-    private JLabel label = null;
-    private JButton startButton = null;
-    private StartChecker startChecker = null; // Model
-    @Override
-    public void Init_Scene() {
-
+        frame.revalidate();
+        frame.repaint();
     }
 
     @Override

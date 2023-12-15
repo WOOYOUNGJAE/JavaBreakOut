@@ -27,4 +27,15 @@ public abstract class SceneViewBase {
 
     }
 
+    public void Add_Label(JLabel label)
+    {
+        frame.add(label);
+        frame.repaint();
+    }
+
+    public void Add_PopUp(JFrame frame)
+    {
+        
+    }
+
 }

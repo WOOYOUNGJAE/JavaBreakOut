@@ -53,6 +53,7 @@ public class CoreController {
         viewController.Initialize();
     }
     // Main에서 호출
+    public static float deltaTime = 0.1f;
     public void Run()
     {
         while (true)
@@ -63,7 +64,7 @@ public class CoreController {
             }
             catch (InterruptedException e){}
 
-            modelController.Update(0.1f);
+            modelController.Update(deltaTime);
             viewController.Render();
         }
     }
@@ -92,6 +93,21 @@ public class CoreController {
         {
             iter.Set_Velocity(iter.Get_Velocity().Multiple(multiple));
         }
+    }
+
+
+    public JLabel PopUp_Result(boolean isCleared)
+    {
+        String str = isCleared ? "Clear" : "Game Over";
+        JLabel jLabel = new JLabel(str);
+
+
+        return jLabel;
+    }
+
+    public void Add_Label_OnSceneView(JLabel label, int sceneViewIndex)
+    {
+        viewController.Add_Label_OnSceneView(label, sceneViewIndex);
     }
 
 }

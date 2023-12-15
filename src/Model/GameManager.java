@@ -1,6 +1,10 @@
 package Model;
 
+import Controller.CoreController;
+
 import javax.swing.*;
+
+import static Utils.StaticVariables.*;
 
 // 시간, 스코어 관리
 public class GameManager

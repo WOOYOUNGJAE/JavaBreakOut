@@ -1,7 +1,9 @@
 package Controller;
 
 import Model.*;
+import MyGUI.Frame.MainFrame;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,6 +15,7 @@ public class ModelController {
     private CollisionManager collisionManager = null;
     private int curScene = START_SCENE;
     private int prevScene = START_SCENE;
+    private boolean gameCleared = false;
     public void Initialize()
     {
         objListArr = CoreController.Get_Instance().Get_ObjListArr();
@@ -57,6 +60,20 @@ public class ModelController {
                 }
             }
 
+            // 모든 벽돌 깨짐
+            if (objListArr[OBJ_ENUM_BRICK].isEmpty() && gameCleared == false && GameManager.Get_Instance().accTime > 2/*오브젝트 생성될 때까지 여유 시간*/)
+            {
+                gameCleared = true;
+
+                CoreController.Get_Instance().deltaTime = 0.f;
+
+
+                JOptionPane.showMessageDialog(MainFrame.Get_Instance(), "Clear\nTime Elapsed : " + GameManager.Get_Instance().accTime / 1000);
+
+                CoreController.Get_Instance().Change_NextScene(START_SCENE);
+
+            }
+
             // 시간 세기
             GameManager.Get_Instance().Update();
         }
@@ -82,8 +99,8 @@ public class ModelController {
                 case LEVEL_EASY:
                 {
                     // Create Bricks, 4 X 4
-                    int colCount = 4; // 열이 몇 개인지 (가로 벽돌 개수)
-                    int rowCount = 4; // 행이 몇 개인지 (세로 벽돌 개수)
+                    int colCount = 2; // 열이 몇 개인지 (가로 벽돌 개수)
+                    int rowCount = 2; // 행이 몇 개인지 (세로 벽돌 개수)
                     int brickWidth = PlayerWidth;
                     int brickHeight = PlayerHeight;
                     int firstXPos = (ScreenWidth>>1) - brickWidth * (colCount>>1) + (int)(brickWidth * 0.5f);

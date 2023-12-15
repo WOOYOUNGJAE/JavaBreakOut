@@ -9,7 +9,8 @@ public class Ball extends GameObject {
     {
         objectEnum = OBJ_ENUM_BALL;
         vPos = new Vector2(x, y);
-        vVelocity = new Vector2(0, 50);
+//        vVelocity = new Vector2(0, 50);
+        vVelocity = new Vector2(0, 150);
         radius = r;
     }
 

@@ -31,7 +31,7 @@ public class ViewController {
     private SceneViewBase prevSceneView = null; // 현재 컨트롤 중인 뷰
     void Initialize()
     {
-        curSceneView.Init_Scene();
+//        curSceneView.Init_Scene();
     }
 
 
@@ -44,7 +44,7 @@ public class ViewController {
     {
         prevSceneView = curSceneView;
         curSceneView = sceneViewArr[nextSceneView];
-        
+
         // TODO : 교체되면서 할 것 들
         if (prevSceneView != null)
         {
@@ -53,5 +53,11 @@ public class ViewController {
 
         curSceneView.Init_Scene();
     }
+
+    public void Add_Label_OnSceneView(JLabel label, int sceneViewIndex)
+    {
+        sceneViewArr[sceneViewIndex].Add_Label(label);
+    }
+
 
 }

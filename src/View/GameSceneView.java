@@ -68,23 +68,7 @@ public class GameSceneView extends SceneViewBase {
         };
         frame.getContentPane().add(middlePanel);
 
-        topPanel = new JPanel()
-        {
-//            @Override
-//            public void paintComponent(Graphics g)
-//            {
-//                for (int i = OBJ_ENUM_PLAYER; i < OBJ_ENUM_END; ++i)
-//                {
-//                    for (var iter : objListArr[i])
-//                    {
-//                        if (iter != null)
-//                        {
-//                            objWriterArr[i].Draw(iter, g);
-//                        }
-//                    }
-//                }
-//            }
-        };
+        topPanel = new JPanel();
         topPanel.add(GameManager.Get_Instance().timeAndScoreLabel);
         frame.getContentPane().add(topPanel, BorderLayout.NORTH);
 
@@ -94,6 +78,14 @@ public class GameSceneView extends SceneViewBase {
 
     @Override
     public void Render() {
+        frame.repaint();
+    }
+
+
+    @Override
+    public void End_Scene() {
+        container.removeAll();
+        frame.revalidate();
         frame.repaint();
     }
 }
