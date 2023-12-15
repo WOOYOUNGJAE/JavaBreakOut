@@ -1,11 +1,12 @@
 package Model;
 
+import Utils.MoveInterface;
 import Utils.Vector2;
 
 import java.awt.*;
 
 // 게임오브젝트 부모 모델
-public abstract class GameObject {
+public abstract class GameObject implements MoveInterface {
 
     protected int objectEnum = -1;
     public int Get_ObjEnum() {return objectEnum;}

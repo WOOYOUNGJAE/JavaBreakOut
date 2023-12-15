@@ -1,11 +1,13 @@
 package Controller;
 
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.security.Key;
 
 public class KeyboardController implements KeyListener {
 public static KeyboardController instance = null;
+
 
     public static KeyboardController Get_Instance()
     {

@@ -23,8 +23,6 @@ public class Ball extends GameObject {
     @Override
     public void Update(float deltaTime) {
         Move(deltaTime);
-
-
     }
 
     public void Move(float deltaTime)
