@@ -71,7 +71,7 @@ public class ModelController {
                 JOptionPane.showMessageDialog(MainFrame.Get_Instance(), "Clear\nTime Elapsed : " + GameManager.Get_Instance().accTime / 1000);
 
                 CoreController.Get_Instance().Change_NextScene(START_SCENE);
-
+                gameCleared = false;
             }
 
             // 시간 세기
@@ -87,8 +87,25 @@ public class ModelController {
             return;
         }
         curScene = nextScene;
-        if (nextScene == GAME_SCENE)
+        if (nextScene == START_SCENE)
         {
+            for (var iter : objListArr)
+            {
+                Iterator<GameObject> iterator = iter.iterator();
+
+                while (iterator.hasNext())
+                {
+                    var innerIter = iterator.next();
+
+                    if (innerIter != null) {
+                        iterator.remove();
+                    }
+                }
+            }
+        }
+        else if (nextScene == GAME_SCENE)
+        {
+            CoreController.Get_Instance().deltaTime = 0.1f;
             objListArr[OBJ_ENUM_PLAYER].add(new Player(ScreenWidth >> 1,ScreenHeight - PlayerHeight - 40, PlayerWidth, PlayerHeight));
             objListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth >> 1, ScreenHeight / 40 , ScreenWidth, ScreenHeight / 20)); // North
             objListArr[OBJ_ENUM_WALL].add(new Wall(ScreenWidth - ScreenWidth / 40, ScreenHeight>>1 , ScreenWidth / 20, ScreenHeight - ScreenHeight / 10)); // East

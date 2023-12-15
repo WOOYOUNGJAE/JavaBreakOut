@@ -78,6 +78,10 @@ public class GameSceneView extends SceneViewBase {
 
     @Override
     public void Render() {
+        if (frame == null) // 예외처리 : frame이 준비되기 전에 Render이 실행되는 상황 방지
+        {
+            return;
+        }
         frame.repaint();
     }
 
