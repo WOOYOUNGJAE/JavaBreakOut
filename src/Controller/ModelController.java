@@ -73,7 +73,7 @@ public class ModelController {
 
 
             // 모든 벽돌 깨짐
-            if (objListArr[OBJ_ENUM_BRICK].isEmpty() && gameCleared == false && GameManager.Get_Instance().accTime > 2/*오브젝트 생성될 때까지 여유 시간*/)
+            if (objListArr[OBJ_ENUM_BRICK].isEmpty() && gameCleared == false && GameManager.Get_Instance().accTime > 2/*예외처리 : 벽돌이 생성되기 이전에 승리판정 하는 상황 방지 위해 2초 여유시간*/)
             {
                 gameCleared = true;
 
@@ -233,7 +233,9 @@ public class ModelController {
                     break;
                 }
 
-                default: //ERROR
+                default: // 예외처리
+                    JOptionPane.showMessageDialog(MainFrame.Get_Instance(),
+                            "레벨 오류");
                     break;
 
             }

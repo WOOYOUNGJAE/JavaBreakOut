@@ -80,8 +80,9 @@ public class CoreController {
     {
         if (objListArr[objEnum].remove(obj) == false)
         {
-            // TODO Exeption
-            int a = 1;
+            // 예외처리
+            JOptionPane.showMessageDialog(MainFrame.Get_Instance(),
+                    "오브젝트 삭제 실패");
         }
 
     }

@@ -45,7 +45,6 @@ public class ViewController {
         prevSceneView = curSceneView;
         curSceneView = sceneViewArr[nextSceneView];
 
-        // TODO : 교체되면서 할 것 들
         if (prevSceneView != null)
         {
             prevSceneView.End_Scene();
