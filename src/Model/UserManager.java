@@ -18,6 +18,8 @@ public class UserManager {
     public void Set_User(User user) {curUser = user;}
     public void Set_User(String strName) {curUser = Find_User(strName);}
 
+    //getter
+    public ArrayList<User> Get_UserList() {return userList;}
     // 찾으면 유저 리턴, 리스트에 없으면 null 리턴
     public User Find_User(String userName)
     {

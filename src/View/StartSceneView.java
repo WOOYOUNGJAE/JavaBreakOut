@@ -10,6 +10,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
+
 import static Utils.StaticVariables.*;
 
 public class StartSceneView extends SceneViewBase {
@@ -90,6 +93,22 @@ public class StartSceneView extends SceneViewBase {
             }
         });
         middlePanel.add(buttonHard);
+
+        // 유저 순위 패널
+        middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
+        Vector<String> listData = new Vector<>();
+        var userList = UserManager.Get_Instance().Get_UserList();
+        for (var iter : userList)
+        {
+            listData.add(iter.Get_Name());
+
+        }
+        listData.add("Test");
+        JList<String> jList = new JList<>(listData);
+        JScrollPane scrollPane = new JScrollPane(jList);
+        middlePanel.add(scrollPane);
+
+
         container.add(middlePanel, BorderLayout.CENTER);
 
         // Bottom, 닉네임 입력
@@ -136,14 +155,5 @@ public class StartSceneView extends SceneViewBase {
         container.removeAll();
         frame.revalidate();
         frame.repaint();
-        //frame.setVisible(false);
-//        container = null;
-//        frame = null;
-//        topPanel = null;
-//        middlePanel = null;
-//        bottomPanel = null;
-//        label = null;
-//        startButton = null;
-//        startChecker = null;
     }
 }

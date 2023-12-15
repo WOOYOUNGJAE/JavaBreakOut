@@ -67,9 +67,21 @@ public class ModelController {
 
                 CoreController.Get_Instance().deltaTime = 0.f;
 
-
-                JOptionPane.showMessageDialog(MainFrame.Get_Instance(), "Clear\nTime Elapsed : " + GameManager.Get_Instance().accTime / 1000);
-
+                String strLevel = "";
+                int curLevel = CoreController.Get_Instance().Get_StartChecker().Get_Level();
+                switch (curLevel)
+                {
+                    case LEVEL_EASY -> strLevel = "Easy";
+                    case LEVEL_NORMAL -> strLevel = "Normal";
+                    case LEVEL_HARD -> strLevel = "Hard";
+                }
+                int timeLeft = (300 - (int)GameManager.Get_Instance().accTime / 1000);
+                int score = timeLeft * curLevel;
+                JOptionPane.showMessageDialog(MainFrame.Get_Instance(),
+                        "Clear\nTime Left : " + timeLeft + "\n"
+                                + "Level : " + strLevel + "\n"
+                                + "Score : Time Left * Level\n  " + score);
+                UserManager.Get_Instance().curUser.Set_Score(score);
                 CoreController.Get_Instance().Change_NextScene(START_SCENE);
                 gameCleared = false;
             }

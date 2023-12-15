@@ -48,7 +48,7 @@ public class GameManager
         if (checkTime == true)
         {
             accTime = System.currentTimeMillis() - startTime;
-            timeAndScoreLabel.setText("Elapsed Time : " + accTime / 1000 + " Current User : " + UserManager.Get_Instance().curUser.Get_Name());
+            timeAndScoreLabel.setText("Time : " + (300 - accTime / 1000) + " Current User : " + UserManager.Get_Instance().curUser.Get_Name());
         }
     }
 }
