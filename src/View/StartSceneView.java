@@ -2,6 +2,7 @@ package View;
 
 import Controller.CoreController;
 import Model.StartChecker;
+import Model.User;
 import Model.UserManager;
 import MyGUI.Frame.MainFrame;
 import MyGUI.Panel.PanelWithTextInput;
@@ -10,8 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Vector;
+import java.util.*;
 
 import static Utils.StaticVariables.*;
 
@@ -100,10 +100,23 @@ public class StartSceneView extends SceneViewBase {
         var userList = UserManager.Get_Instance().Get_UserList();
         for (var iter : userList)
         {
-            listData.add(iter.Get_Name());
-
+            listData.add(iter.Get_Name() + " : " + iter.Get_Score() + "\n");
         }
-        listData.add("Test");
+        // 점수에 따라 정렬
+        Collections.sort(listData, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return Integer.compare(Integer.parseInt(o2.split(":")[1].trim()), Integer.parseInt(o1.split(":")[1].trim()));
+            }
+        });
+
+        for (int i = 0; i < listData.size(); ++i)
+        {
+            listData.set(i, (i+1) + ".  " + listData.get(i));
+        }
+
+
+
         JList<String> jList = new JList<>(listData);
         JScrollPane scrollPane = new JScrollPane(jList);
         middlePanel.add(scrollPane);

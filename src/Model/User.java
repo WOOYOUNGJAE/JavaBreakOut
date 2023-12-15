@@ -14,7 +14,7 @@ public class User {
     {
         return name;
     }
-    public int Get_Scroe(){return score;}
+    public int Get_Score(){return score;}
 
     public void Set_Score(int score) {this.score = score;}
 }
