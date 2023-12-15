@@ -24,7 +24,7 @@ public class Brick extends GameObject
     boolean isAlive = true;
     int hp = 1;
 
-    
+
     public boolean Is_Alive(){return isAlive;}
     public int Get_HP() {return hp;}
     public void Set_HP(int hp) {this.hp = hp;}
@@ -72,7 +72,7 @@ public class Brick extends GameObject
                 // 50%확률로 아이템 생성
                 if (System.currentTimeMillis() % 2 == 0)
                 {
-                    int itemRandomType = (int)System.currentTimeMillis() % ITEM_TYPE_END;
+                    int itemRandomType = (int)(Math.random() * 10) % ITEM_TYPE_END;
                     CoreController.Get_Instance().Add_GameObject(new Item((int)vPos.x, (int)vPos.y, BrickWidth >> 1, itemRandomType), OBJ_ENUM_ITEM);
                 }
                 CoreController.Get_Instance().Remove_Object(this, OBJ_ENUM_BRICK);

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 import MyGUI.Frame.MainFrame;
+import Utils.Vector2;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -139,8 +140,8 @@ public class ModelController {
                 case LEVEL_EASY:
                 {
                     // Create Bricks, 4 X 4
-                    int colCount = 2; // 열이 몇 개인지 (가로 벽돌 개수)
-                    int rowCount = 2; // 행이 몇 개인지 (세로 벽돌 개수)
+                    int colCount = 4; // 열이 몇 개인지 (가로 벽돌 개수)
+                    int rowCount = 4; // 행이 몇 개인지 (세로 벽돌 개수)
                     int brickWidth = PlayerWidth;
                     int brickHeight = PlayerHeight;
                     int firstXPos = (ScreenWidth>>1) - brickWidth * (colCount>>1) + (int)(brickWidth * 0.5f);
@@ -152,7 +153,64 @@ public class ModelController {
                                 brickWidth, brickHeight,1 );
                         objListArr[OBJ_ENUM_BRICK].add(brick);
 
-                        if (i == 8)
+                    }
+                    // Create Ball
+                    for (int i = 0; i < 1; ++i)
+                    {
+                        Ball newBall = new Ball(ScreenWidth >> 1, // X위치 스크린 중간
+                                (int) objListArr[OBJ_ENUM_BRICK].get(colCount * rowCount - 1).Get_Pos().y + brickWidth + 5, // y위치 최소한 제일 밑에 있는 벽돌 아래
+                                BrickWidth >> 1);
+                        objListArr[OBJ_ENUM_BALL].add(newBall);
+                        newBall.Set_Velocity(new Vector2(0, 50));
+                    }
+                    break;
+                }
+
+                case LEVEL_NORMAL:
+                {
+                    // Create Bricks, 4 X 4
+                    int colCount = 4; // 열이 몇 개인지 (가로 벽돌 개수)
+                    int rowCount = 4; // 행이 몇 개인지 (세로 벽돌 개수)
+                    int brickWidth = PlayerWidth;
+                    int brickHeight = PlayerHeight;
+                    int firstXPos = (ScreenWidth>>1) - brickWidth * (colCount>>1) + (int)(brickWidth * 0.5f);
+                    int firstYPos = (ScreenHeight>>4) + 25;
+                    for (int i = 0; i < colCount * rowCount /*4X4*/; ++i)
+                    {
+                        Brick brick  = new Brick(firstXPos + brickWidth * (i % colCount) ,
+                                firstYPos+ brickHeight * (i / colCount),
+                                brickWidth, brickHeight,1 );
+                        objListArr[OBJ_ENUM_BRICK].add(brick);
+
+                    }
+                    // Create Ball
+                    for (int i = 0; i < 1; ++i)
+                    {
+                        Ball newBall = new Ball(ScreenWidth >> 1, // X위치 스크린 중간
+                                (int) objListArr[OBJ_ENUM_BRICK].get(colCount * rowCount - 1).Get_Pos().y + brickWidth + 5, // y위치 최소한 제일 밑에 있는 벽돌 아래
+                                BrickWidth >> 1);
+                        objListArr[OBJ_ENUM_BALL].add(newBall);
+                        newBall.Set_Velocity(new Vector2(0, 90));
+                    }
+                    break;
+                }
+                case LEVEL_HARD:
+                {
+                    // Create Bricks, 4 X 4
+                    int colCount = 4; // 열이 몇 개인지 (가로 벽돌 개수)
+                    int rowCount = 4; // 행이 몇 개인지 (세로 벽돌 개수)
+                    int brickWidth = PlayerWidth;
+                    int brickHeight = PlayerHeight;
+                    int firstXPos = (ScreenWidth>>1) - brickWidth * (colCount>>1) + (int)(brickWidth * 0.5f);
+                    int firstYPos = (ScreenHeight>>4) + 25;
+                    for (int i = 0; i < colCount * rowCount /*4X4*/; ++i)
+                    {
+                        Brick brick  = new Brick(firstXPos + brickWidth * (i % colCount) ,
+                                firstYPos+ brickHeight * (i / colCount),
+                                brickWidth, brickHeight,1 );
+                        objListArr[OBJ_ENUM_BRICK].add(brick);
+
+                        if (i == 0 || i == 2 || i == 5 || i == 7 || i == 8 || i == 10 || i == 13 || i == 15 )
                         {
                             brick.Set_HP(3);
                             brick.Set_Color();
@@ -161,19 +219,19 @@ public class ModelController {
                     // Create Ball
                     for (int i = 0; i < 1; ++i)
                     {
-                        objListArr[OBJ_ENUM_BALL].add(new Ball(ScreenWidth >> 1, // X위치 스크린 중간
+                        Ball newBall = new Ball(ScreenWidth >> 1, // X위치 스크린 중간
                                 (int) objListArr[OBJ_ENUM_BRICK].get(colCount * rowCount - 1).Get_Pos().y + brickWidth + 5, // y위치 최소한 제일 밑에 있는 벽돌 아래
-                                BrickWidth >> 1));
+                                BrickWidth >> 1);
+                        objListArr[OBJ_ENUM_BALL].add(newBall);
+
+                        // 우상단 45도 방향으로
+                        Vector2 newVelocity = new Vector2(1.f, 5.f);
+                        newVelocity.Normalize();
+                        newVelocity = newVelocity.Multiple(90);
+                        newBall.Set_Velocity(newVelocity);
                     }
                     break;
                 }
-
-                case LEVEL_NORMAL:
-
-                    break;
-                case LEVEL_HARD:
-
-                    break;
 
                 default: //ERROR
                     break;
