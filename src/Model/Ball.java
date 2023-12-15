@@ -1,6 +1,10 @@
 package Model;
 
+import Controller.CoreController;
+import MyGUI.Frame.MainFrame;
 import Utils.Vector2;
+
+import javax.swing.*;
 
 import static Utils.StaticVariables.*;
 
@@ -19,6 +23,8 @@ public class Ball extends GameObject {
     @Override
     public void Update(float deltaTime) {
         Move(deltaTime);
+
+
     }
 
     public void Move(float deltaTime)

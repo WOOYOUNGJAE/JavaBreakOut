@@ -60,6 +60,17 @@ public class ModelController {
                 }
             }
 
+            // 게임 오버 체크
+            // 화면보다 밑에 있으면
+            if (objListArr[OBJ_ENUM_BALL].get(0).Get_Pos().y > ScreenHeight + 10 && CoreController.Get_Instance().deltaTime != 0.f) {
+                CoreController.Get_Instance().deltaTime = 0.f;
+                JOptionPane.showMessageDialog(MainFrame.Get_Instance(),
+                        "Game Over");
+                CoreController.Get_Instance().Change_NextScene(START_SCENE);
+                return;
+            }
+
+
             // 모든 벽돌 깨짐
             if (objListArr[OBJ_ENUM_BRICK].isEmpty() && gameCleared == false && GameManager.Get_Instance().accTime > 2/*오브젝트 생성될 때까지 여유 시간*/)
             {
