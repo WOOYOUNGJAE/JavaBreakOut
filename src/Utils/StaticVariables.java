@@ -9,8 +9,8 @@ public class StaticVariables {
 
     public static final int START_SCENE = 0;
     public static final int GAME_SCENE = 1;
-    public static final int SCORE_SCENE = 2;
-    public static final int SCENE_END = 3;
+//    public static final int SCORE_SCENE = 2;
+    public static final int SCENE_END = 2;
 
     public static final int LEVEL_EASY = 1;
     public static final int LEVEL_NORMAL = 2;

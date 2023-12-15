@@ -1,14 +1,11 @@
 package Controller;
 
 import Model.GameObject;
-import MyGUI.Frame.MainFrame;
 import View.GameSceneView;
 import View.SceneViewBase;
-import View.ScoreSceneView;
 import View.StartSceneView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 import static Utils.StaticVariables.*;
@@ -21,7 +18,7 @@ public class ViewController {
         sceneViewArr[START_SCENE] = new StartSceneView();
         ArrayList<GameObject>[] objListArr = CoreController.Get_Instance().Get_ObjListArr();
         sceneViewArr[GAME_SCENE] = new GameSceneView(objListArr);
-        sceneViewArr[SCORE_SCENE] = new ScoreSceneView();
+//        sceneViewArr[SCORE_SCENE] = new ScoreSceneView();
 
         curSceneView = sceneViewArr[START_SCENE];
 

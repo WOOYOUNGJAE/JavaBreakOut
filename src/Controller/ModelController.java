@@ -28,10 +28,10 @@ public class ModelController {
         {
             return;
         }
-        else if (curScene == SCORE_SCENE)
-        {
-            return;
-        }
+//        else if (curScene == SCORE_SCENE)
+//        {
+//            return;
+//        }
         else if (curScene == GAME_SCENE)
         {
             for (var iter : objListArr)
