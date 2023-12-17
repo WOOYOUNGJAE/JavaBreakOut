@@ -71,6 +71,15 @@ public class ModelController {
                 return;
             }
 
+            if (GameManager.Get_Instance().accTime/ 1000 > 300)
+            {
+                CoreController.Get_Instance().deltaTime = 0.f;
+                JOptionPane.showMessageDialog(MainFrame.Get_Instance(),
+                        "Time Out, Game Over");
+                CoreController.Get_Instance().Change_NextScene(START_SCENE);
+                return;
+            }
+
 
             // 모든 벽돌 깨짐
             if (objListArr[OBJ_ENUM_BRICK].isEmpty() && gameCleared == false && GameManager.Get_Instance().accTime > 2/*예외처리 : 벽돌이 생성되기 이전에 승리판정 하는 상황 방지 위해 2초 여유시간*/)
